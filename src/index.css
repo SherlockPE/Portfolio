@@ -4,9 +4,38 @@
 @variant dark (&:where(.dark, .dark *));
 
 body {
-  @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 transition-colors duration-300;
+  @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 transition-colors duration-100;
 }
 
+
+/* Animaciones personalizadas para la sección Home */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Clases de utilidad */
+.animate-twinkle {
+  animation: twinkle var(--duration, 3s) infinite ease-in-out var(--delay, 0s);
+}
+
+.animate-slow-spin {
+  animation: slow-spin 60s linear infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
 
 
 /* 
