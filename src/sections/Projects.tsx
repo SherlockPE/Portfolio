@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
 import { projectsData, type ProjectItem } from "../data/projects";
@@ -189,107 +190,111 @@ export default function Projects() {
         })}
       </div>
 
-      {/* Lightbox / Modal interactivo de imágenes */}
-      {selectedProject && selectedProject.images.length > 0 && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 backdrop-blur-md p-4 sm:p-6 transition-opacity"
-          onClick={closeGallery}
-        >
-          {/* Header del Lightbox */}
+      {/* Lightbox / Modal interactivo de imágenes montado en document.body para evitar que se desplace por transformaciones de scroll */}
+      {selectedProject &&
+        selectedProject.images.length > 0 &&
+        typeof document !== "undefined" &&
+        createPortal(
           <div
-            className="flex items-center justify-between w-full max-w-6xl mx-auto pb-4 border-b border-white/10 select-none"
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-[9999] h-[100dvh] w-[100dvw] flex flex-col justify-between bg-black/95 backdrop-blur-md p-4 sm:p-6 transition-opacity overscroll-contain select-none"
+            onClick={closeGallery}
           >
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-              <span className="text-sm sm:text-base font-bold text-white font-mono">
-                {selectedProject.title[language]}
-              </span>
-              <span className="text-xs font-mono text-blue-400">
-                ({activePhotoIdx + 1} / {selectedProject.images.length})
-              </span>
-            </div>
-
-            <button
-              type="button"
-              onClick={closeGallery}
-              aria-label={t.close}
-              className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-            >
-              <span>{t.close}</span>
-              <FiX className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Área principal de visualización de la foto */}
-          <div
-            className="relative flex-1 flex items-center justify-center py-4 max-w-6xl w-full mx-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Botón Anterior */}
-            {selectedProject.images.length > 1 && (
-              <button
-                type="button"
-                onClick={prevPhoto}
-                aria-label={t.prev}
-                className="absolute left-2 sm:left-4 z-10 p-2 sm:p-3 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors border border-white/20 backdrop-blur-md cursor-pointer"
-              >
-                <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-            )}
-
-            {/* Imagen Principal */}
-            <div className="relative max-h-[65vh] sm:max-h-[70vh] flex items-center justify-center">
-              <img
-                src={selectedProject.images[activePhotoIdx]}
-                alt={`${selectedProject.title[language]} - ${activePhotoIdx + 1}`}
-                className="max-h-[65vh] sm:max-h-[70vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
-              />
-            </div>
-
-            {/* Botón Siguiente */}
-            {selectedProject.images.length > 1 && (
-              <button
-                type="button"
-                onClick={nextPhoto}
-                aria-label={t.next}
-                className="absolute right-2 sm:right-4 z-10 p-2 sm:p-3 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors border border-white/20 backdrop-blur-md cursor-pointer"
-              >
-                <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-            )}
-          </div>
-
-          {/* Carrusel inferior de miniaturas */}
-          {selectedProject.images.length > 1 && (
+            {/* Header del Lightbox */}
             <div
-              className="w-full max-w-6xl mx-auto pt-3 border-t border-white/10 flex items-center justify-center gap-2 overflow-x-auto py-2 px-1"
+              className="flex items-center justify-between w-full max-w-6xl mx-auto pb-4 border-b border-white/10 select-none shrink-0"
               onClick={(e) => e.stopPropagation()}
             >
-              {selectedProject.images.map((imgSrc, idx) => (
-                <button
-                  key={imgSrc + idx}
-                  type="button"
-                  onClick={() => setActivePhotoIdx(idx)}
-                  className={`relative shrink-0 h-14 w-20 sm:h-16 sm:w-24 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                    activePhotoIdx === idx
-                      ? "border-blue-500 scale-105 shadow-md shadow-blue-500/30"
-                      : "border-transparent opacity-60 hover:opacity-100 hover:border-white/50"
-                  }`}
-                >
-                  <img
-                    src={imgSrc}
-                    alt={`Miniatura ${idx + 1}`}
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </button>
-              ))}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span className="text-sm sm:text-base font-bold text-white font-mono">
+                  {selectedProject.title[language]}
+                </span>
+                <span className="text-xs font-mono text-blue-400">
+                  ({activePhotoIdx + 1} / {selectedProject.images.length})
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={closeGallery}
+                aria-label={t.close}
+                className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              >
+                <span>{t.close}</span>
+                <FiX className="w-4 h-4" />
+              </button>
             </div>
-          )}
-        </div>
-      )}
+
+            {/* Área principal de visualización de la foto */}
+            <div
+              className="relative flex-1 flex items-center justify-center py-4 max-w-6xl w-full mx-auto min-h-0 overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Botón Anterior */}
+              {selectedProject.images.length > 1 && (
+                <button
+                  type="button"
+                  onClick={prevPhoto}
+                  aria-label={t.prev}
+                  className="absolute left-2 sm:left-4 z-10 p-2 sm:p-3 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors border border-white/20 backdrop-blur-md cursor-pointer"
+                >
+                  <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+              )}
+
+              {/* Imagen Principal */}
+              <div className="relative flex items-center justify-center max-h-full max-w-full">
+                <img
+                  src={selectedProject.images[activePhotoIdx]}
+                  alt={`${selectedProject.title[language]} - ${activePhotoIdx + 1}`}
+                  className="max-h-[62vh] sm:max-h-[68vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
+                />
+              </div>
+
+              {/* Botón Siguiente */}
+              {selectedProject.images.length > 1 && (
+                <button
+                  type="button"
+                  onClick={nextPhoto}
+                  aria-label={t.next}
+                  className="absolute right-2 sm:right-4 z-10 p-2 sm:p-3 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors border border-white/20 backdrop-blur-md cursor-pointer"
+                >
+                  <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+              )}
+            </div>
+
+            {/* Carrusel inferior de miniaturas */}
+            {selectedProject.images.length > 1 && (
+              <div
+                className="w-full max-w-6xl mx-auto pt-3 border-t border-white/10 flex items-center justify-center gap-2 overflow-x-auto py-2 px-1 shrink-0"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {selectedProject.images.map((imgSrc, idx) => (
+                  <button
+                    key={imgSrc + idx}
+                    type="button"
+                    onClick={() => setActivePhotoIdx(idx)}
+                    className={`relative shrink-0 h-14 w-20 sm:h-16 sm:w-24 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                      activePhotoIdx === idx
+                        ? "border-blue-500 scale-105 shadow-md shadow-blue-500/30"
+                        : "border-transparent opacity-60 hover:opacity-100 hover:border-white/50"
+                    }`}
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={`Miniatura ${idx + 1}`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

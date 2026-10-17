@@ -1,6 +1,7 @@
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
 import { FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
+import InteractiveName from "../components/InteractiveName";
 
 export default function Home() {
   const { language } = useApp();
@@ -10,7 +11,7 @@ export default function Home() {
     <div className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl w-full flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
         {/* COLUMNA IZQUIERDA: Presentación e Identidad */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl z-10">
           {/* Badge de Disponibilidad en Vivo */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium mb-6">
             <span className="relative flex h-2 w-2">
@@ -20,13 +21,24 @@ export default function Home() {
             <span>{t.status}</span>
           </div>
 
-          {/* Nombre y Especialidad */}
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">
+          {/* Foto circular de mi perfil justo encima del nombre */}
+          <div className="relative mb-5 group">
+            <div className="w-48 h-48 sm:w-48 sm:h-48 rounded-full overflow-hidden ring-4 ring-slate-100 dark:ring-slate-800 shadow-xl border-2 border-white dark:border-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:ring-blue-500/40">
+              <img
+                src="/profile_pic_doggy.png"
+                alt="Fabricio López Reyes"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Saludo */}
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">
             {t.greeting}
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.1]">
-            Fabricio <span className="text-blue-600 dark:text-blue-500">López Reyes</span>
-          </h1>
+
+          {/* Nombre Interactivo: 1 al cargar (Scramble), 3 en hover (Spotlight), 4 al clic (Copiar npx) */}
+          <InteractiveName />
 
           <div className="mt-3 flex items-center gap-2 font-mono text-sm sm:text-base text-slate-600 dark:text-slate-300 font-semibold">
             <span>{t.role}</span>
@@ -97,7 +109,7 @@ export default function Home() {
             </div>
 
             {/* Código en ejecución */}
-            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-3 bg-white dark:bg-slate-900/95">
+            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-3 bg-white/95 dark:bg-slate-900/95">
               <div className="flex items-start gap-2">
                 <span className="text-black dark:text-white font-extrabold select-none text-sm">$</span>
                 <span className="font-bold text-black dark:text-white tracking-tight">
