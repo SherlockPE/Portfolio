@@ -38,6 +38,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return "es";
   });
 
+  // Asegura la sincronización inicial y reactiva
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -54,7 +55,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [language]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => {
+      const next: Theme = prev === "light" ? "dark" : "light";
+      if (typeof window !== "undefined") {
+        const root = window.document.documentElement;
+        if (next === "dark") {
+          root.classList.add("dark");
+        } else {
+          root.classList.remove("dark");
+        }
+        localStorage.setItem("theme", next);
+      }
+      return next;
+    });
   };
 
   const changeLanguage = (lang: Language) => {

@@ -1,6 +1,5 @@
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
-import heroImg from "../assets/hero.png";
 import { FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
 
 export default function Home() {
@@ -91,39 +90,44 @@ export default function Home() {
                 <span className="w-3 h-3 rounded-full bg-amber-400/80" />
                 <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
               </div>
-              <span className="font-mono text-xs text-slate-400">
+              <span className="font-mono text-xs font-bold text-black dark:text-white">
                 fabricio@42madrid: ~/stack
               </span>
               <div className="w-12" />
             </div>
 
             {/* Código en ejecución */}
-            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-3 bg-white dark:bg-slate-900/95 text-slate-800 dark:text-slate-200">
-              <div className="flex items-start gap-2 text-slate-400">
-                <span className="text-blue-500 font-bold">$</span>
-                <span>gcc -Wall -Wextra -Werror main.c -o portfolio</span>
+            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-3 bg-white dark:bg-slate-900/95">
+              <div className="flex items-start gap-2">
+                <span className="text-black dark:text-white font-extrabold select-none text-sm">$</span>
+                <span className="font-bold text-black dark:text-white tracking-tight">
+                  gcc -Wall -Wextra -Werror main.c -o portfolio
+                </span>
               </div>
-              <div className="flex items-start gap-2 text-slate-400">
-                <span className="text-blue-500 font-bold">$</span>
-                <span>./portfolio --profile</span>
+              <div className="flex items-start gap-2">
+                <span className="text-black dark:text-white font-extrabold select-none text-sm">$</span>
+                <span className="font-bold text-black dark:text-white tracking-tight">
+                  ./portfolio --profile
+                </span>
+                <span className="inline-block w-2 h-4 bg-black dark:bg-white animate-pulse" />
               </div>
 
               {/* Salida formateada con foto y datos reales */}
               <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-4 mb-4">
                   <img
-                    src={heroImg}
+                    src="/profile_pic_doggy.png"
                     alt="Fabricio López Reyes"
                     className="w-14 h-14 rounded-xl object-cover ring-2 ring-blue-500/30"
                   />
                   <div>
-                    <p className="font-bold text-slate-900 dark:text-white text-sm">
+                    <p className="font-bold text-black dark:text-white text-sm">
                       Fabricio López Reyes
                     </p>
-                    <p className="text-xs text-blue-600 dark:text-blue-400">
+                    <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold">
                       42 Madrid Graduate
                     </p>
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
                       Torrejón de Ardoz, Madrid
                     </p>
                   </div>
@@ -135,25 +139,25 @@ export default function Home() {
                     <span className="block font-bold text-base text-blue-600 dark:text-blue-400 font-mono">
                       {t.stats.hackathonsVal}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                       {t.stats.hackathons}
                     </span>
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60">
-                    <span className="block font-bold text-base text-slate-900 dark:text-white font-mono">
+                    <span className="block font-bold text-base text-black dark:text-white font-mono">
                       {t.stats.studentsVal}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                       {t.stats.students}
                     </span>
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60">
-                    <span className="block font-bold text-xs text-slate-900 dark:text-white font-mono truncate">
+                    <span className="block font-bold text-xs text-black dark:text-white font-mono truncate">
                       {t.stats.techVal}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                       {t.stats.tech}
                     </span>
                   </div>
@@ -162,7 +166,7 @@ export default function Home() {
                     <span className="block font-bold text-xs text-emerald-600 dark:text-emerald-400 font-mono truncate">
                       {t.stats.schoolVal}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                       {t.stats.school}
                     </span>
                   </div>

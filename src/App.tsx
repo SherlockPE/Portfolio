@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen antialiased transition-colors duration-300 bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen antialiased bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-blue-500 selection:text-white">
       <Navbar />
       <main>
         <section id="home">
