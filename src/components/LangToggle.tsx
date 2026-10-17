@@ -10,7 +10,7 @@ export default function LangToggle() {
   ];
 
   return (
-    <div className="flex items-center rounded-lg border border-theme-border bg-theme-bg/80 p-0.5 text-xs font-mono font-medium">
+    <div className="flex items-center rounded-lg border border-theme-border/60 bg-theme-card/60 backdrop-blur-sm p-0.5 text-xs font-mono font-medium">
       {languages.map((lang) => (
         <button
           key={lang.code}

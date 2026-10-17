@@ -111,12 +111,12 @@ export default function InteractiveName() {
         {mousePos && (
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 select-none transition-opacity duration-150"
+            className="w-full h-full pointer-events-none absolute inset-0 select-none transition-opacity duration-150"
             style={{
               backgroundImage:
                 theme === "dark"
-                  ? `radial-gradient(190px circle at ${mousePos.x}px ${mousePos.y}px, #ffffff 0%, rgba(186, 230, 253, 1) 18%, rgba(56, 189, 248, 0.95) 38%, rgba(37, 99, 235, 0.85) 62%, rgba(29, 78, 216, 0.3) 80%, transparent 92%)`
-                  : `radial-gradient(190px circle at ${mousePos.x}px ${mousePos.y}px, rgba(14, 165, 233, 1) 0%, rgba(2, 132, 199, 1) 25%, rgba(37, 99, 235, 0.95) 50%, rgba(29, 78, 216, 0.8) 72%, transparent 90%)`,
+                  ? `radial-gradient(200px circle at ${mousePos.x}px ${mousePos.y}px, #ffffff 0%, rgba(186, 230, 253, 1) 18%, rgba(56, 189, 248, 0.95) 38%, rgba(37, 99, 235, 0.85) 62%, rgba(29, 78, 216, 0.3) 80%, transparent 92%)`
+                  : `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px, rgba(14, 165, 233, 1) 0%, rgba(2, 132, 199, 1) 25%, rgba(37, 99, 235, 0.95) 50%, rgba(29, 78, 216, 0.8) 72%, transparent 90%)`,
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
               WebkitTextFillColor: "transparent",

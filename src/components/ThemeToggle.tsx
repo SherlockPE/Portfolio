@@ -57,7 +57,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={handleToggle}
-      className="flex items-center justify-center w-9 h-9 rounded-lg border border-theme-border bg-theme-bg/80 text-theme-secondary hover:text-theme-text hover:border-theme-border-glow transition-all cursor-pointer"
+      className="flex items-center justify-center w-9 h-9 rounded-lg border border-theme-border/60 bg-theme-card/60 backdrop-blur-sm text-theme-secondary hover:text-theme-text hover:border-theme-border-glow transition-all cursor-pointer"
       aria-label={theme === "light" ? "Cambiar a modo noche" : "Cambiar a modo día"}
       title={theme === "light" ? "Modo oscuro" : "Modo claro"}
     >

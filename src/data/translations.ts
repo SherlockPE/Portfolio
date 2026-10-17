@@ -15,7 +15,7 @@ export const translations = {
       role: "Software Developer & 42 Madrid Graduate",
       description:
         "Formado en el rigor de 42 Madrid a base de depurar memoria en C, construir sistemas Unix y resolver retos en equipo sin profesores. Co-fundador del MVP de QWAK y ganador de retos tecnológicos como el reto de IA Agéntica de Mastercard y HackSat 2026. Construyo herramientas sólidas donde el software genera impacto real.",
-      cta: "Ver Proyectos Ganadores",
+      cta: "Ver Proyectos",
       contactBtn: "Hablemos",
       scrollDown: "Explorar portfolio",
       stats: {

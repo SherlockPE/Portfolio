@@ -8,7 +8,7 @@ export default function Home() {
   const t = translations[language].hero;
 
   return (
-    <div className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+    <div className="relative flex min-h-screen w-full items-center justify-center px-4 pt-20 pb-16 sm:px-6 sm:pt-24 sm:pb-20 lg:px-8">
       <div className="mx-auto flex max-w-7xl w-full flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
         {/* COLUMNA IZQUIERDA: Presentación e Identidad */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl z-10">

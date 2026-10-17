@@ -43,7 +43,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-theme-border bg-theme-bg/80 backdrop-blur-md transition-colors">
+      <header className="fixed top-0 inset-x-0 z-50 w-full border-b border-theme-border/40 bg-theme-bg/30 backdrop-blur-md transition-colors">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           {/* Logo / Nombre */}
           <a
@@ -76,7 +76,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-theme-border bg-theme-bg/80 text-theme-text hover:text-theme-accent hover:border-theme-border-glow transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-accent cursor-pointer"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-theme-border/60 bg-theme-card/60 backdrop-blur-sm text-theme-text hover:text-theme-accent hover:border-theme-border-glow transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-accent cursor-pointer"
               aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
