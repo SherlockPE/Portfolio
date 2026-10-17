@@ -3,27 +3,25 @@ import { useApp, type Language } from "../context/AppContext";
 export default function LangToggle() {
   const { language, changeLanguage } = useApp();
 
-  const languages: { code: Language; label: string; flag: string }[] = [
-    { code: "es", label: "ES", flag: "🇪🇸" },
-    { code: "en", label: "EN", flag: "🇬🇧" },
-    { code: "pt", label: "PT", flag: "🇵🇹" },
-    // { code: "uk", label: "UKR", flag: "🇺🇦" }
+  const languages: { code: Language; label: string }[] = [
+    { code: "es", label: "ES" },
+    { code: "en", label: "EN" },
+    { code: "pt", label: "PT" },
   ];
 
   return (
-    <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+    <div className="flex items-center rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 p-0.5 text-xs font-mono font-medium">
       {languages.map((lang) => (
         <button
           key={lang.code}
           onClick={() => changeLanguage(lang.code)}
-          className={`px-2 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
+          className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
             language === lang.code
-              ? "bg-white text-slate-900 shadow dark:bg-slate-700 dark:text-white"
-              : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
+              ? "bg-white text-slate-950 font-bold shadow-xs dark:bg-slate-800 dark:text-white"
+              : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           }`}
-          title={lang.label}
+          title={`Cambiar idioma a ${lang.label}`}
         >
-          <span className="mr-1">{lang.flag}</span>
           {lang.label}
         </button>
       ))}

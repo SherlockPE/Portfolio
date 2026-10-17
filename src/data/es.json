@@ -1,0 +1,168 @@
+{
+  "header": {
+    "name": "FABRICIO LÓPEZ REYES",
+    "headline": "Software Developer | C · C++ · Python · TypeScript · React · Docker | 42 Madrid Graduate",
+    "nav": {
+      "work": "Experiencia",
+      "about": "Sobre mí",
+      "contact": "Contacto"
+    }
+  },
+  "profile": {
+    "tag": "SOBRE MÍ",
+    "name": "Fabricio López Reyes",
+    "role": "Software Developer | C · C++ · Python · JavaScript · TypeScript · React · Linux · Docker | 42 Madrid Graduate",
+    "location": "Torrejón de Ardoz, Comunidad de Madrid, España",
+    "bio": "Software Developer graduado en 42 Madrid, formado en programación a través de proyectos intensivos en lenguajes y tecnologías como C, C++, TypeScript, Docker, Linux y Git. Trabajando siempre en equipo y con mucha autonomía. Profesor de programación (Python, JavaScript, C, C++ y POO), lo que potencia mi capacidad de comunicación técnica y pedagógica. Con experiencia real fundando el MVP de QWAK y ganando múltiples hackathons de impacto (HackSat 2026, Merge Hackathon Mastercard, Premio Especial LaCabina de Telefónica), enfocado en crear productos tecnológicos sólidos y escalables.",
+    "avatarUrl": ""
+  },
+  "sectionTitles": {
+    "experience": "EXPERIENCIA",
+    "education": "EDUCACIÓN",
+    "achievements": "LOGROS & COMPETICIONES",
+    "skills": "HABILIDADES",
+    "interests": "INTERESES",
+    "languages": "IDIOMAS",
+    "contact": "CONTACTO"
+  },
+  "experience": [
+    {
+      "id": "exp-algo",
+      "title": "Profesor de Programación & Auxiliar Administrativo",
+      "organization": "Algorithmics España • Madrid",
+      "period": "MAY 2025 – JUN 2026",
+      "description": "Impartición de clases de programación a estudiantes de nivel inicial e intermedio en Python, Scratch y desarrollo de videojuegos. Fomento del pensamiento lógico, creatividad y resolución de problemas adaptados a las necesidades de cada grupo. Apoyo administrativo en organización de horarios, seguimiento académico y atención a familias."
+    },
+    {
+      "id": "exp-qwak",
+      "title": "Co-Founder & Developer",
+      "organization": "QWAK (Proyecto de Startup) • Madrid",
+      "period": "JUN 2025 – OCT 2025",
+      "description": "Co-fundador en plataforma para la cadena de suministro (supply chain) con alertas basadas en banderas y checkpoints para optimizar la comunicación entre transportistas y empresas. Arquitectura y desarrollo del MVP con TypeScript, React, Tailwind CSS, Docker, MongoDB y APIs de Telefónica OpenGateway (Device Swap, Location, KYC, Roaming). Validación temprana y definición de roadmap."
+    },
+    {
+      "id": "exp-prof",
+      "title": "Profesor de Programación de Software",
+      "organization": "Superprof & Tusclasesparticulares • Madrid",
+      "period": "NOV 2023 – JUN 2025",
+      "description": "Clases personalizadas de programación para alumnos de diversas edades. Elaboración de planes de estudio a medida en Python, JavaScript, C y C++, centrándose en programación orientada a objetos, control de fugas de memoria, segmentation faults y algoritmia."
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-42",
+      "title": "42 Madrid Fundación Telefónica",
+      "organization": "42 Graduate / Student, Computer Science",
+      "period": "SEP 2023 – 2026",
+      "description": "Formación integral en ciencias de la computación bajo metodología peer-to-peer y proyectos prácticos. Especialización en programación de bajo nivel, gestión de memoria, concurrencia y arquitectura de sistemas en C y C++."
+    },
+    {
+      "id": "edu-escp",
+      "title": "ESCP Business School",
+      "organization": "Option E: Social Entrepreneurship",
+      "period": "SEP 2025 – DIC 2025",
+      "description": "Especialización académica en emprendimiento social, modelos de negocio digitales, innovación estratégica y liderazgo de proyectos tecnológicos."
+    },
+    {
+      "id": "edu-piscine",
+      "title": "42 Madrid (C Piscine)",
+      "organization": "C Piscine, Computer Science",
+      "period": "MAY 2023 – JUN 2023",
+      "description": "Superación del proceso eliminatorio intensivo de 1 mes en C, scripting y algoritmos bajo alta presión y trabajo colaborativo."
+    },
+    {
+      "id": "edu-utec",
+      "title": "Universidad de Ingeniería y Tecnología (UTEC)",
+      "organization": "Computer Science (Fundamentos Universitarios)",
+      "period": "MAR 2022 – JUL 2022",
+      "description": "Bases teóricas universitarias en ciencias de la computación, lógica y estructuras matemáticas."
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-hacksat",
+      "title": "2º Lugar en HackSat 2026 (Física Espacial)",
+      "subtitle": "Proyecto ASTRALUMEN: Solución para detectar basura espacial menor a 10 cm con constelación de CubeSats, observación anti-solar e IA orbital para reconstruir trayectorias, junto a la Real Sociedad Española de Física.",
+      "year": "2026"
+    },
+    {
+      "id": "ach-merge",
+      "title": "Ganador del Merge Hackathon 2025 (Mastercard Challenge)",
+      "subtitle": "Proyecto ClearWeb: Modelo para una web privada sin anuncios con 2 agentes IA autónomos (protocolo X402), micro-pagos en blockchain BSV y firmas ECDSA. Ganador del reto Mastercard Agentic AI en MERGE Madrid & São Paulo.",
+      "year": "2025"
+    },
+    {
+      "id": "ach-lacabina",
+      "title": "Premio Especial #LaCabina & 2º Puesto Summer Hackathon",
+      "subtitle": "Organizado por 42 Madrid, Telefónica OpenGateway y MongoDB. Proyecto QWAK galardonado con el premio al mejor proyecto de toda la edición para ser expuesto ante más de 1.800 clientes al año en el centro de innovación de Telefónica.",
+      "year": "2025"
+    },
+    {
+      "id": "ach-nasa",
+      "title": "NASA Space Apps Challenge 2025",
+      "subtitle": "Proyecto Building Mars: Herramienta en Unity y MATLAB para diseñar y calcular la viabilidad y capacidades técnicas de hábitats habitables fuera de la Tierra.",
+      "year": "2025"
+    },
+    {
+      "id": "ach-medrecords",
+      "title": "Premio Social Impact con MedRecords DApp",
+      "subtitle": "Desarrollo de una DApp descentralizada en blockchain para el acceso seguro al historial médico global en emergencias, con Smart Contracts, React y Tailwind CSS.",
+      "year": "2024"
+    }
+  ],
+  "skills": [
+    "C",
+    "C++",
+    "Python",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Tailwind CSS",
+    "Docker",
+    "Linux",
+    "Git",
+    "Telefónica OpenGateway APIs",
+    "MongoDB",
+    "Programación Orientada a Objetos",
+    "Gestión de Memoria en C",
+    "Blockchain / Smart Contracts",
+    "Unity",
+    "Scratch"
+  ],
+  "interests": [
+    "Física espacial, astronomía y CubeSats",
+    "Desarrollo de software y optimización a bajo nivel",
+    "Agentes de IA autónomos y protocolos descentralizados",
+    "Tecnología para logística y cadena de suministro (Supply Chain)",
+    "Pedagogía, comunicación y divulgación de programación"
+  ],
+  "languages": [
+    {
+      "name": "Español",
+      "level": "Nativo o Bilingüe"
+    },
+    {
+      "name": "Inglés",
+      "level": "Competencia Profesional Completa (Full Professional)"
+    },
+    {
+      "name": "Portugués",
+      "level": "Competencia Profesional de Trabajo (Professional Working)"
+    },
+    {
+      "name": "Ucraniano",
+      "level": "Nivel Básico (Elementary)"
+    }
+  ],
+  "contact": {
+    "email": "fabriciolopezreyes@gmail.com",
+    "linkedin": {
+      "label": "linkedin.com/in/fabricio-lópez-reyes",
+      "url": "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/"
+    },
+    "github": {
+      "label": "github.com/SherlockPE",
+      "url": "https://github.com/SherlockPE"
+    }
+  }
+}

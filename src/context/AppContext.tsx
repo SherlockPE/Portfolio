@@ -1,10 +1,9 @@
-import
-{
-    createContext,
-    useContext,
-    useState,
-    useEffect,
-    type ReactNode,
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
 } from "react";
 
 export type Theme = "light" | "dark";
@@ -20,13 +19,10 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  // Inicializar estado buscando en localStorage o usando valores por defecto
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme") as Theme;
       if (savedTheme) return savedTheme;
-      
-      // Si no hay guardado, comprobar preferencia del sistema
       return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     return "light";
@@ -36,15 +32,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") {
       const savedLang = localStorage.getItem("lang") as Language;
       if (savedLang) return savedLang;
-      
-      // Comprobar idioma del navegador (opcional, recortando a los soportados)
       const browserLang = navigator.language.split("-")[0];
       if (["es", "en", "pt"].includes(browserLang)) return browserLang as Language;
     }
-    return "es"; // Idioma por defecto
+    return "es";
   });
 
-  // Efecto para aplicar/quitar la clase 'dark' en el elemento <html>
   useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -55,10 +48,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Efecto para guardar el idioma seleccionado
   useEffect(() => {
     localStorage.setItem("lang", language);
-    // Opcional: cambiar el atributo 'lang' del HTML para accesibilidad y SEO
     window.document.documentElement.lang = language;
   }, [language]);
 
@@ -77,11 +68,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     changeLanguage,
   };
 
-  // En React 19 usamos <AppContext value={value}> directamente en lugar de AppContext.Provider
   return <AppContext value={value}>{children}</AppContext>;
 }
 
-// Hook personalizado para consumir el contexto fácilmente
+// eslint-disable-next-line react-refresh/only-export-components
 export function useApp() {
   const context = useContext(AppContext);
   if (context === undefined) {

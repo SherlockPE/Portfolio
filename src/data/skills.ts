@@ -9,43 +9,36 @@ export interface SkillCategory {
 
 export const skillsData: SkillCategory[] = [
   {
-    categoryName: { es: "Bajo Nivel & Sistemas", en: "Low-Level & Systems", pt: "Baixo Nível e Sistemas" },
-    skills: ["C", "C++", "Assembly", "Linux Administration"]
+    categoryName: {
+      es: "Bajo Nivel & Sistemas",
+      en: "Low-Level & Systems",
+      pt: "Baixo Nível e Sistemas",
+    },
+    skills: ["C", "C++", "Assembly", "Linux", "Git / GitHub", "Gestión de Memoria"],
   },
   {
-    categoryName: { es: "Ecosistema Web", en: "Web Ecosystem", pt: "Ecossistema Web" },
-    skills: ["React 19", "TypeScript", "Tailwind CSS v4", "Node.js"]
+    categoryName: {
+      es: "Ecosistema Web & Frontend",
+      en: "Web Ecosystem & Frontend",
+      pt: "Ecossistema Web e Frontend",
+    },
+    skills: ["React 19", "TypeScript", "JavaScript", "Tailwind CSS v4", "Next.js / Vite"],
   },
   {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
+    categoryName: {
+      es: "Backend, APIs & Cloud",
+      en: "Backend, APIs & Cloud",
+      pt: "Backend, APIs e Nuvem",
+    },
+    skills: ["Python", "Docker", "MongoDB", "Telefónica OpenGateway", "REST APIs"],
   },
   {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
+    categoryName: {
+      es: "Metodologías & Otras Tecnologías",
+      en: "Tools, Methods & Specialities",
+      pt: "Ferramentas, Métodos e Tecnologias",
+    },
+    skills: ["POO (OOP)", "Unity", "Scratch (Docencia)", "Blockchain / Smart Contracts", "Anki / Speed Learning"],
   },
-  {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
-  },
-  {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
-  },
-  {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
-  },
-  {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
-  },
-  {
-    categoryName: { es: "Redes & Ciberseguridad", en: "Networks & Cyber", pt: "Redes e Cibersegurança" },
-    skills: ["Network Monitoring", "Pi-hole", "Defensive Config"]
-  },
-  {
-    categoryName: { es: "Herramientas & Métodos", en: "Tools & Methods", pt: "Ferramentas e Métodos" },
-    skills: ["Git / GitHub", "Vite", "Anki / Speed Learning", "Docker"]
-  }
 ];
+

@@ -1,112 +1,177 @@
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
+import heroImg from "../assets/hero.png";
+import { FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
 
 export default function Home() {
   const { language } = useApp();
-  const t = translations[language].home;
-
-  // Generamos un array aleatorio para las estrellas de fondo
-  const stars = Array.from({ length: 40 }, (_, i) => ({
-    id: i,
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 5}s`,
-    duration: `${3 + Math.random() * 4}s`,
-    size: Math.random() > 0.5 ? "w-1 h-1" : "w-0.5 h-0.5",
-  }));
+  const t = translations[language].hero;
 
   return (
-    <div className="relative flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center overflow-hidden px-4 py-12 md:flex-row md:px-8">
-      
-      {/* 1. Estrellitas de fondo (Twinkling Stars) */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        {stars.map((star) => (
-          <div
-            key={star.id}
-            className={`absolute rounded-full bg-slate-400 dark:bg-white animate-twinkle ${star.size}`}
-            style={{
-              top: star.top,
-              left: star.left,
-              "--delay": star.delay,
-              "--duration": star.duration,
-            } as React.CSSProperties}
-          />
-        ))}
-      </div>
+    <div className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl w-full flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+        {/* COLUMNA IZQUIERDA: Presentación e Identidad */}
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl">
+          {/* Badge de Disponibilidad en Vivo */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-medium mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span>{t.status}</span>
+          </div>
 
-      {/* Contenedor Principal (Capa superior al fondo) */}
-      <div className="z-10 mx-auto flex max-w-7xl w-full flex-col-reverse items-center justify-between gap-12 md:flex-row">
-        
-        {/* TEXTO E INTRODUCCIÓN */}
-        <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-xl">
-          <span className="text-sm font-semibold tracking-wider text-blue-500 uppercase mb-2">
+          {/* Nombre y Especialidad */}
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">
             {t.greeting}
           </span>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl text-slate-950 dark:text-white">
-            Fabricio
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.1]">
+            Fabricio <span className="text-blue-600 dark:text-blue-500">López Reyes</span>
           </h1>
-          <h2 className="mt-3 text-2xl font-bold text-slate-600 dark:text-slate-400 sm:text-3xl">
-            {t.role}
-          </h2>
-          <p className="mt-4 text-base text-slate-500 dark:text-slate-400 max-w-md">
-            Especializado en ingeniería de software, desarrollo de sistemas de bajo nivel y arquitectura web moderna.
+
+          <div className="mt-3 flex items-center gap-2 font-mono text-sm sm:text-base text-slate-600 dark:text-slate-300 font-semibold">
+            <span>{t.role}</span>
+          </div>
+
+          {/* Descripción con voz propia */}
+          <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+            {t.description}
           </p>
-          
-          <div className="mt-8 flex gap-4">
+
+          {/* Botones de acción */}
+          <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start items-center">
             <a
               href="#projects"
-              className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-blue-500 transition-all transform hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md hover:bg-blue-500 transition-all transform hover:-translate-y-0.5 cursor-pointer"
             >
-              {t.cta}
+              <span>{t.cta}</span>
+              <FiArrowRight className="w-4 h-4" />
             </a>
+
             <a
               href="#contact"
-              className="rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-3 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-900 transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-6 py-3.5 text-sm font-semibold hover:border-slate-400 dark:hover:border-slate-600 transition-all cursor-pointer text-slate-800 dark:text-slate-200"
             >
-              Contacto
+              <span>{t.contactBtn}</span>
             </a>
+
+            {/* Enlaces directos a perfiles */}
+            <div className="flex items-center gap-2 ml-2 pl-4 border-l border-slate-200 dark:border-slate-800">
+              <a
+                href="https://github.com/SherlockPE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-500 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                title="GitHub"
+              >
+                <FiGithub className="w-5 h-5" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                title="LinkedIn"
+              >
+                <FiLinkedin className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* 2. ÁREA DE ARTE / ANIMACIÓN DE LA TIERRA */}
-        <div className="relative flex h-72 w-72 items-center justify-center sm:h-96 sm:w-96">
-          
-          {/* Planeta Tierra Rotando (SVG estilizado en el fondo del arte) */}
-          <div className="absolute inset-0 animate-slow-spin opacity-20 dark:opacity-40 pointer-events-none">
-            <svg viewBox="0 0 100 100" className="w-full h-full stroke-blue-500 fill-none stroke-[0.5]">
-              <circle cx="50" cy="50" r="45" strokeDasharray="2 2" />
-              <circle cx="50" cy="50" r="35" />
-              {/* Líneas de paralelos / meridianos simula rotación tridimensional */}
-              <ellipse cx="50" cy="50" rx="45" ry="15" />
-              <ellipse cx="50" cy="50" rx="15" ry="45" />
-              <path d="M50 5 L50 95 M5 50 L95 50" />
-            </svg>
-          </div>
+        {/* COLUMNA DERECHA: Terminal Técnica & Métricas Reales */}
+        <div className="w-full max-w-lg lg:max-w-md">
+          {/* Tarjeta tipo Terminal Unix */}
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
+            {/* Barra superior de terminal */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/70">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-400/80" />
+                <span className="w-3 h-3 rounded-full bg-amber-400/80" />
+                <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
+              </div>
+              <span className="font-mono text-xs text-slate-400">
+                fabricio@42madrid: ~/stack
+              </span>
+              <div className="w-12" />
+            </div>
 
-          {/* 3. Contenedor de Arte Sentado (Floating Wrapper) */}
-          <div className="absolute z-10 w-4/5 h-4/5 animate-float flex items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-2xl bg-white/10 backdrop-blur-xs">
-            {/* TODO: Reemplazar este div por tu tag <img src="..." /> cuando tengas el arte listo */}
-            <div className="text-center p-4">
-              <span className="text-4xl block mb-2">👨‍💻</span>
-              <p className="text-xs font-mono text-slate-400">
-                [ Arte de mi sentado ]<br />🎨 Comming Soon
-              </p>
+            {/* Código en ejecución */}
+            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-3 bg-white dark:bg-slate-900/95 text-slate-800 dark:text-slate-200">
+              <div className="flex items-start gap-2 text-slate-400">
+                <span className="text-blue-500 font-bold">$</span>
+                <span>gcc -Wall -Wextra -Werror main.c -o portfolio</span>
+              </div>
+              <div className="flex items-start gap-2 text-slate-400">
+                <span className="text-blue-500 font-bold">$</span>
+                <span>./portfolio --profile</span>
+              </div>
+
+              {/* Salida formateada con foto y datos reales */}
+              <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-4 mb-4">
+                  <img
+                    src={heroImg}
+                    alt="Fabricio López Reyes"
+                    className="w-14 h-14 rounded-xl object-cover ring-2 ring-blue-500/30"
+                  />
+                  <div>
+                    <p className="font-bold text-slate-900 dark:text-white text-sm">
+                      Fabricio López Reyes
+                    </p>
+                    <p className="text-xs text-blue-600 dark:text-blue-400">
+                      42 Madrid Graduate
+                    </p>
+                    <p className="text-[11px] text-slate-400">
+                      Torrejón de Ardoz, Madrid
+                    </p>
+                  </div>
+                </div>
+
+                {/* Métricas reales destacadas */}
+                <div className="grid grid-cols-2 gap-2 pt-2 text-center">
+                  <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60">
+                    <span className="block font-bold text-base text-blue-600 dark:text-blue-400 font-mono">
+                      {t.stats.hackathonsVal}
+                    </span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                      {t.stats.hackathons}
+                    </span>
+                  </div>
+
+                  <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60">
+                    <span className="block font-bold text-base text-slate-900 dark:text-white font-mono">
+                      {t.stats.studentsVal}
+                    </span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                      {t.stats.students}
+                    </span>
+                  </div>
+
+                  <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60">
+                    <span className="block font-bold text-xs text-slate-900 dark:text-white font-mono truncate">
+                      {t.stats.techVal}
+                    </span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                      {t.stats.tech}
+                    </span>
+                  </div>
+
+                  <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800/60">
+                    <span className="block font-bold text-xs text-emerald-600 dark:text-emerald-400 font-mono truncate">
+                      {t.stats.schoolVal}
+                    </span>
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">
+                      {t.stats.school}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* 4. SubScroll (Indicador inferior de scroll animado) */}
-      <div className="absolute bottom-6 left-120 flex flex-col items-center gap-2 pointer-events-none opacity-60">
-        <span className="text-xs font-mono tracking-widest uppercase text-slate-400">
-          {t.scrollDown}
-        </span>
-        <div className="flex h-8 w-5 justify-center rounded-full border-2 border-slate-400 p-1 dark:border-slate-600">
-          {/* Bolita del mouse que sube y baja */}
-          <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-blue-500" />
-        </div>
-      </div>
-
     </div>
   );
 }
