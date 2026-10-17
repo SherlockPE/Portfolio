@@ -43,15 +43,15 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80 transition-colors">
+      <header className="sticky top-0 z-50 w-full border-b border-theme-border bg-theme-bg/80 backdrop-blur-md transition-colors">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           {/* Logo / Nombre */}
           <a
             href="#home"
             onClick={() => setIsOpen(false)}
-            className="text-xl font-bold tracking-tight hover:opacity-85 transition-opacity"
+            className="text-xl font-bold tracking-tight text-theme-text hover:opacity-85 transition-opacity"
           >
-            Fabricio<span className="text-blue-500">.</span>
+            Fabricio<span className="text-theme-accent">.</span>
           </a>
 
           {/* Navegación de Secciones (Desktop) */}
@@ -60,7 +60,7 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="hover:text-blue-500 transition-colors"
+                className="text-theme-secondary hover:text-theme-accent transition-colors"
               >
                 {item.label}
               </a>
@@ -76,7 +76,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:border-slate-300 dark:hover:border-slate-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-theme-border bg-theme-bg/80 text-theme-text hover:text-theme-accent hover:border-theme-border-glow transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-theme-accent cursor-pointer"
               aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
@@ -102,24 +102,24 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Menú desplegable para móviles con animación fluida de apertura y cierre */}
+        {/* Menú desplegable para móviles con animación fluida (absoluto para no empujar la página) */}
         <div
           id="mobile-navigation"
-          className={`md:hidden grid transition-all duration-300 ease-out border-t border-slate-100 dark:border-slate-800/60 ${
+          className={`md:hidden absolute top-full left-0 w-full grid transition-all duration-300 ease-out border-b bg-theme-card/95 backdrop-blur-xl shadow-2xl ${
             isOpen
-              ? "grid-rows-[1fr] opacity-100"
-              : "grid-rows-[0fr] opacity-0 pointer-events-none"
+              ? "grid-rows-[1fr] opacity-100 border-theme-border visible"
+              : "grid-rows-[0fr] opacity-0 border-transparent invisible pointer-events-none"
           }`}
           aria-hidden={!isOpen}
         >
           <div className="overflow-hidden">
-            <nav className="flex flex-col gap-1 px-4 py-3 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md">
+            <nav className="flex flex-col gap-1 px-4 py-3">
               {navItems.map((item, index) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100/80 dark:hover:bg-slate-900/80 active:scale-[0.99] ${
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 text-theme-secondary hover:text-theme-accent hover:bg-theme-bg/80 active:scale-[0.99] ${
                     isOpen
                       ? "translate-y-0 opacity-100"
                       : "-translate-y-2 opacity-0"
@@ -129,12 +129,12 @@ export default function Navbar() {
                   }}
                 >
                   <span className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-blue-500 dark:text-blue-400 font-semibold">
+                    <span className="text-xs font-mono text-theme-accent font-semibold">
                       {item.num}
                     </span>
                     <span>{item.label}</span>
                   </span>
-                  <FiChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                  <FiChevronRight className="w-4 h-4 text-theme-muted" />
                 </a>
               ))}
             </nav>
@@ -144,7 +144,7 @@ export default function Navbar() {
 
       {/* Backdrop oscuro para móviles cuando el menú está abierto */}
       <div
-        className={`fixed inset-0 top-16 z-40 bg-slate-950/20 dark:bg-black/40 backdrop-blur-[2px] md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 top-16 z-40 bg-slate-950/20 dark:bg-black/50 backdrop-blur-[2px] md:hidden transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}

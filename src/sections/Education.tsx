@@ -18,39 +18,48 @@ export default function Education() {
       />
 
       {/* Twin Layout: Dos columnas paralelas en Desktop (Experiencia y Educación) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
         
         {/* ================= COLUMNA 1: EXPERIENCIA LABORAL ================= */}
         <div className="flex flex-col">
           {/* Encabezado de Columna */}
-          <div className="flex items-center gap-3 pb-6 border-b border-slate-200 dark:border-slate-800">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/20">
+          <div className="flex items-center gap-3.5 pb-5 border-b border-theme-border">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-theme-accent-subtle text-theme-accent ring-1 ring-theme-accent/30 shadow-xs">
               <FiBriefcase className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-xl font-bold tracking-tight text-slate-950 dark:text-white">
+              <h3 className="text-xl font-bold tracking-tight text-theme-text">
                 {t.experienceTitle}
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-theme-muted">
                 {t.experienceSubtitle}
               </p>
             </div>
           </div>
 
-          {/* Timeline de Experiencia */}
-          <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 sm:ml-5 pl-6 sm:pl-7 pt-6 space-y-10">
+          {/* Timeline de Experiencia con haz de luz conectado */}
+          <div className="relative border-l-2 border-theme-border-subtle ml-4 sm:ml-5 pl-6 sm:pl-7 pt-6 space-y-6">
+            {/* Haz de luz vertical sobre la línea */}
+            <div className="absolute left-[-2px] top-0 h-4/5 w-0.5 bg-gradient-to-b from-theme-accent via-theme-highlight to-transparent pointer-events-none" />
+
             {experienceData.map((item) => (
-              <div key={item.id} className="relative group">
-                {/* Indicador del Timeline */}
-                <span className="absolute -left-[31px] sm:-left-[35px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 ring-4 ring-white dark:ring-slate-950 group-hover:scale-125 transition-transform" />
+              <div
+                key={item.id}
+                className="relative group p-5 rounded-2xl border border-theme-border/60 hover:border-theme-border-glow bg-theme-card hover:bg-theme-card-hover backdrop-blur-xs transition-all shadow-xs"
+              >
+                {/* Indicador del Timeline con halo */}
+                <div className="absolute -left-[33px] sm:-left-[37px] top-6 flex items-center justify-center">
+                  <span className="absolute w-4 h-4 rounded-full bg-theme-accent/35 animate-ping opacity-60" />
+                  <span className="relative w-3 h-3 rounded-full bg-theme-accent ring-4 ring-theme-bg shadow-xs" />
+                </div>
 
                 {/* Fecha y Ubicación */}
-                <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-900/40">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-theme-accent-subtle text-theme-accent border border-theme-accent/20">
                     {item.period}
                   </span>
                   {item.location && (
-                    <span className="inline-flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+                    <span className="inline-flex items-center gap-1 text-xs text-theme-muted">
                       <FiMapPin className="h-3 w-3" />
                       {item.location}
                     </span>
@@ -58,24 +67,24 @@ export default function Education() {
                 </div>
 
                 {/* Empresa y Rol */}
-                <h4 className="text-lg font-bold text-slate-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h4 className="text-base sm:text-lg font-bold text-theme-text group-hover:text-theme-accent transition-colors">
                   {item.company}
                 </h4>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                <p className="text-xs sm:text-sm font-semibold text-theme-secondary">
                   {item.role[language]}
                 </p>
 
                 {/* Descripción general */}
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="mt-2 text-xs sm:text-sm text-theme-muted leading-relaxed">
                   {item.description[language]}
                 </p>
 
                 {/* Puntos destacados / Responsabilidades */}
                 {item.details && item.details[language] && item.details[language].length > 0 && (
-                  <ul className="mt-2.5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
+                  <ul className="mt-3 space-y-1.5 text-xs text-theme-secondary">
                     {item.details[language].map((detail, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-theme-accent shrink-0 mt-1.5" />
                         <span>{detail}</span>
                       </li>
                     ))}
@@ -84,11 +93,11 @@ export default function Education() {
 
                 {/* Tags de tecnologías y competencias */}
                 {item.tags && item.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-1.5">
+                  <div className="mt-3.5 flex flex-wrap gap-1.5">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/60"
+                        className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-theme-bg/80 text-theme-secondary border border-theme-border-subtle"
                       >
                         {tag}
                       </span>
@@ -103,65 +112,74 @@ export default function Education() {
         {/* ================= COLUMNA 2: EDUCACIÓN & FORMACIÓN ================= */}
         <div className="flex flex-col">
           {/* Encabezado de Columna */}
-          <div className="flex items-center gap-3 pb-6 border-b border-slate-200 dark:border-slate-800">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 ring-1 ring-indigo-500/20">
+          <div className="flex items-center gap-3.5 pb-5 border-b border-theme-border">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-theme-highlight-glow text-theme-highlight ring-1 ring-theme-highlight/30 shadow-xs">
               <FiBookOpen className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-xl font-bold tracking-tight text-slate-950 dark:text-white">
+              <h3 className="text-xl font-bold tracking-tight text-theme-text">
                 {t.educationTitle}
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-theme-muted">
                 {t.educationSubtitle}
               </p>
             </div>
           </div>
 
-          {/* Timeline de Educación */}
-          <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 sm:ml-5 pl-6 sm:pl-7 pt-6 space-y-10">
+          {/* Timeline de Educación con haz de luz conectado */}
+          <div className="relative border-l-2 border-theme-border-subtle ml-4 sm:ml-5 pl-6 sm:pl-7 pt-6 space-y-6">
+            {/* Haz de luz vertical sobre la línea */}
+            <div className="absolute left-[-2px] top-0 h-4/5 w-0.5 bg-gradient-to-b from-theme-highlight via-theme-accent to-transparent pointer-events-none" />
+
             {educationData.map((item) => (
-              <div key={item.id} className="relative group">
-                {/* Indicador del Timeline */}
-                <span className="absolute -left-[31px] sm:-left-[35px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 ring-4 ring-white dark:ring-slate-950 group-hover:scale-125 transition-transform" />
+              <div
+                key={item.id}
+                className="relative group p-5 rounded-2xl border border-theme-border/60 hover:border-theme-border-glow bg-theme-card hover:bg-theme-card-hover backdrop-blur-xs transition-all shadow-xs"
+              >
+                {/* Indicador del Timeline con halo */}
+                <div className="absolute -left-[33px] sm:-left-[37px] top-6 flex items-center justify-center">
+                  <span className="absolute w-4 h-4 rounded-full bg-theme-highlight/35 animate-ping opacity-60" />
+                  <span className="relative w-3 h-3 rounded-full bg-theme-highlight ring-4 ring-theme-bg shadow-xs" />
+                </div>
 
                 {/* Fecha */}
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-900/40">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-theme-highlight-glow text-theme-highlight border border-theme-highlight/20">
                     {item.period}
                   </span>
                 </div>
 
                 {/* Institución y Título */}
-                <h4 className="text-lg font-bold text-slate-950 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+                <h4 className="text-base sm:text-lg font-bold text-theme-text group-hover:text-theme-highlight transition-colors flex items-center gap-1.5">
                   {item.institution}
                   {item.link && (
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-indigo-500 transition-colors"
+                      className="text-theme-muted hover:text-theme-highlight transition-colors"
                       title="LinkedIn"
                     >
                       <FiExternalLink className="h-3.5 w-3.5" />
                     </a>
                   )}
                 </h4>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                <p className="text-xs sm:text-sm font-semibold text-theme-secondary">
                   {item.degree[language]}
                 </p>
 
                 {/* Descripción */}
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="mt-2 text-xs sm:text-sm text-theme-muted leading-relaxed">
                   {item.description[language]}
                 </p>
 
                 {/* Tags de aprendizaje */}
                 {item.tags && item.tags.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-1.5">
+                  <div className="mt-3.5 flex flex-wrap gap-1.5">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/60"
+                        className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-theme-bg/80 text-theme-secondary border border-theme-border-subtle"
                       >
                         {tag}
                       </span>

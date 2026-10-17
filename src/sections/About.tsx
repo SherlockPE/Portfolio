@@ -25,18 +25,18 @@ export default function About() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Narrativa humana personal */}
         <div className="lg:col-span-5 space-y-6">
-          <p className="text-base sm:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+          <p className="text-base sm:text-lg leading-relaxed text-theme-secondary">
             {t.description}
           </p>
 
-          <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 shadow-xs space-y-3 font-mono text-xs text-slate-600 dark:text-slate-400">
-            <div className="flex items-center justify-between text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-2">
-              <span className="font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+          <div className="p-5 rounded-2xl border border-theme-border bg-theme-card/90 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs text-theme-muted">
+            <div className="flex items-center justify-between text-theme-muted border-b border-theme-border-subtle pb-2">
+              <span className="font-bold text-theme-text uppercase tracking-wider">
                 Base Metodológica
               </span>
-              <span>42 Network</span>
+              <span className="text-theme-accent">42 Network</span>
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 text-theme-secondary">
               <p>• Proyectos prácticos en C/C++ sin librerías estándar mágicas</p>
               <p>• Evaluación continua entre pares (peer evaluation)</p>
               <p>• Autonomía total frente a la documentación y el código fuente</p>
@@ -49,15 +49,15 @@ export default function About() {
           {t.pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-blue-400 dark:hover:border-blue-500/50 transition-all shadow-xs group"
+              className="p-6 rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover hover:border-theme-border-glow backdrop-blur-xs transition-all shadow-xs group"
             >
-              <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800/80 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-theme-bg/80 border border-theme-border-subtle flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 {pillarIcons[idx]}
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+              <h3 className="text-base font-bold text-theme-text mb-2">
                 {pillar.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-theme-muted leading-relaxed">
                 {pillar.desc}
               </p>
             </div>

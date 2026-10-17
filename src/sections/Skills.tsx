@@ -20,9 +20,9 @@ export default function Skills() {
         {skillsData.map((cat, idx) => (
           <div
             key={idx}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs transition-all hover:border-slate-400 dark:hover:border-slate-700 dark:border-slate-800 dark:bg-slate-900/60"
+            className="rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover p-6 shadow-xs transition-all hover:border-theme-border-glow backdrop-blur-xs"
           >
-            <h3 className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 tracking-wider uppercase mb-5 flex items-center justify-between">
+            <h3 className="text-xs font-mono font-bold text-theme-accent tracking-wider uppercase mb-5 flex items-center justify-between">
               <span>{cat.categoryName[language]}</span>
             </h3>
 
@@ -30,7 +30,7 @@ export default function Skills() {
               {cat.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center rounded-md bg-slate-50 dark:bg-slate-950 px-2.5 py-1 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 transition-colors hover:border-blue-400 dark:hover:border-blue-600"
+                  className="inline-flex items-center rounded-md bg-theme-bg/80 px-2.5 py-1 text-xs font-mono font-medium text-theme-secondary border border-theme-border-subtle transition-colors hover:border-theme-accent/50 hover:text-theme-accent"
                 >
                   {skill}
                 </span>

@@ -89,8 +89,8 @@ export default function Projects() {
           onClick={() => setSelectedCategory("all")}
           className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
             selectedCategory === "all"
-              ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-500/50"
-              : "bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
+              ? "bg-theme-accent text-white shadow-md shadow-blue-500/25 ring-2 ring-theme-accent/50"
+              : "bg-theme-card text-theme-secondary hover:bg-theme-card-hover border border-theme-border"
           }`}
         >
           {t.filterAll} ({projectsData.length})
@@ -101,8 +101,8 @@ export default function Projects() {
           onClick={() => setSelectedCategory("systems")}
           className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
             selectedCategory === "systems"
-              ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-500/50"
-              : "bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
+              ? "bg-theme-accent text-white shadow-md shadow-blue-500/25 ring-2 ring-theme-accent/50"
+              : "bg-theme-card text-theme-secondary hover:bg-theme-card-hover border border-theme-border"
           }`}
         >
           {t.filterSystems} ({projectsData.filter((p) => p.category === "systems").length})
@@ -113,8 +113,8 @@ export default function Projects() {
           onClick={() => setSelectedCategory("hackathons")}
           className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
             selectedCategory === "hackathons"
-              ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-500/50"
-              : "bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
+              ? "bg-theme-accent text-white shadow-md shadow-blue-500/25 ring-2 ring-theme-accent/50"
+              : "bg-theme-card text-theme-secondary hover:bg-theme-card-hover border border-theme-border"
           }`}
         >
           {t.filterHackathons} ({projectsData.filter((p) => p.category === "hackathons").length})
@@ -130,7 +130,7 @@ export default function Projects() {
           return (
             <div
               key={project.id}
-              className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-all hover:border-slate-400 dark:hover:border-slate-700 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/60 group"
+              className="flex flex-col overflow-hidden rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover shadow-xs transition-all hover:border-theme-border-glow hover:shadow-xl backdrop-blur-xs group"
             >
               {/* Portada / Imagen o Header de Terminal para proyectos de bajo nivel */}
               {coverImg ? (
@@ -200,22 +200,22 @@ export default function Projects() {
               {/* Contenido de la tarjeta */}
               <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg font-bold text-theme-text mb-3 group-hover:text-theme-accent transition-colors">
                     {project.title[language]}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-theme-muted leading-relaxed mb-6">
                     {project.description[language]}
                   </p>
                 </div>
 
                 <div>
                   {/* Etiquetas técnicas en monospace */}
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100 dark:border-slate-800/80 mb-4">
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-theme-border-subtle mb-4">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50"
+                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-theme-bg/80 text-theme-secondary border border-theme-border-subtle"
                       >
                         #{tag}
                       </span>
@@ -228,14 +228,14 @@ export default function Projects() {
                       <button
                         type="button"
                         onClick={() => openGallery(project, 0)}
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-theme-secondary hover:text-theme-accent transition-colors cursor-pointer"
                       >
                         <FiImage className="w-3.5 h-3.5" />
                         <span>{t.viewGallery}</span>
                       </button>
                     ) : (
-                      <span className="text-xs font-mono text-slate-400 flex items-center gap-1">
-                        <FiTerminal className="w-3 h-3 text-blue-500" />
+                      <span className="text-xs font-mono text-theme-faint flex items-center gap-1">
+                        <FiTerminal className="w-3 h-3 text-theme-accent" />
                         42 Academic
                       </span>
                     )}
@@ -245,7 +245,7 @@ export default function Projects() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-theme-accent hover:underline"
                       >
                         <span>{t.viewPost}</span>
                         <FiExternalLink className="w-3.5 h-3.5" />

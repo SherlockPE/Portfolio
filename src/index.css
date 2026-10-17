@@ -3,13 +3,111 @@
 /* Configuración para que Tailwind v4 use la clase .dark en lugar de la media query del sistema */
 @variant dark (&:where(.dark, .dark *));
 
+:root {
+  /* ========================================================
+     THEME LIGHT: Variables Semánticas Editables
+     Cambia estos valores para ajustar toda la paleta clara
+     ======================================================== */
+  --bg-main: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: rgba(248, 250, 252, 0.95);
+  --bg-card-header: rgba(241, 245, 249, 0.75);
+
+  --border-main: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --border-glow: rgba(59, 130, 246, 0.35);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+
+  --accent-main: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-subtle: rgba(37, 99, 235, 0.08);
+  --accent-glow: rgba(37, 99, 235, 0.2);
+
+  --highlight-main: #4f46e5;
+  --highlight-glow: rgba(79, 70, 229, 0.15);
+
+  --success-main: #10b981;
+  --success-subtle: rgba(16, 185, 129, 0.1);
+
+  --grid-color: rgba(100, 116, 139, 0.08);
+}
+
+.dark {
+  /* ========================================================
+     THEME DARK: Variables Semánticas Editables (Estilo Vercel / Linear)
+     Cambia estos valores para ajustar toda la paleta oscura
+     ======================================================== */
+  --bg-main: #030712;
+  --bg-subtle: #080d1a;
+  --bg-card: rgba(15, 23, 42, 0.65);
+  --bg-card-hover: rgba(30, 41, 59, 0.75);
+  --bg-card-header: rgba(15, 23, 42, 0.9);
+
+  --border-main: rgba(51, 65, 85, 0.65);
+  --border-subtle: rgba(30, 41, 59, 0.65);
+  --border-glow: rgba(59, 130, 246, 0.5);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+
+  --accent-main: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-subtle: rgba(59, 130, 246, 0.15);
+  --accent-glow: rgba(59, 130, 246, 0.3);
+
+  --highlight-main: #818cf8;
+  --highlight-glow: rgba(129, 140, 248, 0.22);
+
+  --success-main: #34d399;
+  --success-subtle: rgba(52, 211, 153, 0.12);
+
+  --grid-color: rgba(255, 255, 255, 0.045);
+}
+
+@theme {
+  --color-theme-bg: var(--bg-main);
+  --color-theme-subtle: var(--bg-subtle);
+  --color-theme-card: var(--bg-card);
+  --color-theme-card-hover: var(--bg-card-hover);
+  --color-theme-card-header: var(--bg-card-header);
+
+  --color-theme-border: var(--border-main);
+  --color-theme-border-subtle: var(--border-subtle);
+  --color-theme-border-glow: var(--border-glow);
+
+  --color-theme-text: var(--text-primary);
+  --color-theme-secondary: var(--text-secondary);
+  --color-theme-muted: var(--text-muted);
+  --color-theme-faint: var(--text-faint);
+
+  --color-theme-accent: var(--accent-main);
+  --color-theme-accent-hover: var(--accent-hover);
+  --color-theme-accent-subtle: var(--accent-subtle);
+  --color-theme-accent-glow: var(--accent-glow);
+
+  --color-theme-highlight: var(--highlight-main);
+  --color-theme-highlight-glow: var(--highlight-glow);
+
+  --color-theme-success: var(--success-main);
+  --color-theme-success-subtle: var(--success-subtle);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
   }
 
   body {
-    @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
