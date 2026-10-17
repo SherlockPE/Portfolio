@@ -1,42 +1,40 @@
-# Plan de Humanización y Eliminación de Clichés de IA
+# Plan de Trabajo & Decisiones de Diseño (Portfolio Fabricio)
 
+## 📌 Histórico de Fases Completadas
 - [x] **Fase 1: Iconografía e Identidad Visual (Cero Emojis)**
-  - [x] Reemplazar emojis en `ThemeToggle.tsx` por SVGs limpios de Sol y Luna con trazo refinado
-  - [x] Reemplazar banderas en `LangToggle.tsx` por selector tipográfico limpio (`ES`, `EN`, `PT`)
-  - [x] Crear e integrar iconos SVG vectoriales limpios (Mail, LinkedIn, GitHub, Terminal, Trophy, MapPin, Code)
-  - [x] Eliminar la barra azul centrada repetitiva (`h-1 w-20 bg-blue-500 rounded-full`) y crear `SectionHeading.tsx` con numeración editorial técnica (`// 01`, `// 02`, etc.)
+  - Reemplazo de emojis por iconos SVG vectoriales y migración completa a `react-icons/fi`.
+  - Creación de `SectionHeading.tsx` con numeración técnica editorial (`// 01`, `// 02`, etc.).
+- [x] **Fase 2: Rediseño del Hero & Terminal Unix**
+  - Badge de disponibilidad en vivo con pulso verde esmeralda.
+  - Tarjeta de terminal interactiva con comandos reales (`gcc`, `./portfolio --profile`), avatar canino (`/profile_pic_doggy.png`) y métricas reales.
+  - Comandos bash con texto en blanco y negro puro de alto impacto (`text-black font-extrabold` / `text-white font-extrabold`) y cursor parpadeante.
+- [x] **Fase 3: Copywriting Auténtico y Trilingüe**
+  - Narrativa personal centrada en 42 Madrid, depuración en C, concurrencia y hackathons en ES, EN y PT.
+- [x] **Fase 4: Proyectos & Hackathones (Sección 04)**
+  - Título actualizado en los 3 idiomas: *Proyectos y Hackathones* (ES), *Projects and Hackathons* (EN), *Projetos e Hackathons* (PT).
+  - Exportación centralizada de fotos desde carpetas en `public/` en `projectImages.ts`.
+  - Lightbox / Modal interactivo en `Projects.tsx` con soporte de teclado (`Esc`, `←`, `→`), carrusel de miniaturas y montado en `document.body` mediante `createPortal` (evitando bugs de desplazamiento de CSS `transform` en scroll).
+- [x] **Fase 5: Transición Circular de Tema (Circular Reveal)**
+  - Implementación con View Transitions API (`startViewTransition` + `clipPath: circle(...)`).
+  - Sincronización en `ThemeToggle.tsx` y `AppContext.tsx`.
 
-- [x] **Fase 2: Rediseño del Hero (Sin estrellas aleatorias ni esfera de stock)**
-  - [x] Implementar badge de disponibilidad real (`🟢 Disponible para posiciones de software & proyectos en Madrid / Remoto`)
-  - [x] Titular tipográfico de alto impacto con nombre y especialidad técnica
-  - [x] Reemplazar la esfera giratoria y estrellas por un bloque interactivo/editorial auténtico: tarjeta tipo terminal Unix con comandos reales (`gcc`, `portfolio --profile`) y métricas tangibles (3+ hackathons, 100+ alumnos, C / TS / React, 42 Madrid)
-  - [x] Botones de llamada a la acción refinados y accesos directos a GitHub y LinkedIn
+---
 
-- [x] **Fase 3: Copywriting Auténtico y Humano**
-  - [x] Reescribir `translations.ts` eliminando frases hechas de IA y destacando la historia real en 42 Madrid, debugging de memoria en C, concurrencia, hackathons y startups
-  - [x] Adaptar textos en Español, Inglés y Portugués
+## 🚀 Fase 6: Interactividad Avanzada, Foto Hero & Animaciones de Scroll (En Ejecución)
 
-- [x] **Fase 4: Rediseño de Secciones Clave**
-  - [x] `About.tsx`: Reemplazar el cohete y gradiente borroso por una narrativa técnica y 4 pilares de especialidad con iconos SVG
-  - [x] `Projects.tsx`: Tarjetas de proyectos con badges profesionales (sin emojis de trofeos/medallas) y prueba de impacto
-  - [x] `Education.tsx`: Timeline limpio con `SectionHeading` y tipografía mono para credenciales
-  - [x] `Skills.tsx`: Badges técnicos en `font-mono` con estética de ingeniería y bordes suaves
-  - [x] `Contact.tsx`: Tarjetas de contacto con iconos SVG vectoriales, botón para copiar email al portapapeles y sin emojis
+### 1. Animaciones al Escrollear (Scroll Animations)
+- **Principio UX/UI**: Deben ejecutarse **una sola vez** (`IntersectionObserver.unobserve`), con aceleración natural tipo muelle (`cubic-bezier(0.16, 1, 0.3, 1)`), desplazamiento sutil (`18px`) y duración de `1.15s` con escalonamiento de `100ms` para un ritmo pausado y cinematográfico.
+- **Respeto a accesibilidad**: Fallback inmediato si el usuario tiene `prefers-reduced-motion: reduce`.
 
-- [x] **Fase 5: Verificación y Calidad**
-  - [x] Comprobar `npm run build` y `npm run lint` (0 errores, 0 advertencias)
-  - [x] Probar modo día y noche
-  - [x] Probar cambio de idioma (ES, EN, PT)
+### 2. Integración de la Foto en el Hero
+- **Configuración Activa (Avatar Circular)**:
+  - Foto de perfil circular (`/profile_pic_doggy.png`) situada directamente sobre el encabezado del nombre con marco sutil (`ring-4 ring-slate-100 dark:ring-slate-800`), sombra pronunciada y hover scale suave.
+  - La tarjeta de terminal Unix a la derecha queda totalmente limpia y despejada, sin imágenes superpuestas de fondo.
+- **Opciones de Reserva (Documentadas para el futuro)**:
+  - *Opción C (Fusión Orgánica / Gradient Bleed)*: Foto grande vertical (`/psapio_pictures/foto_psapio.jpg`) difuminada tras la terminal.
+  - *Opción A (Bento Grid Hero)*: Retrato vertical simétrico 3:4 junto a la terminal divididos en cuadrícula equilibrada.
 
-- [x] **Fase 4: Rediseño de Secciones Clave**
-  - [x] `About.tsx`: Reemplazar el cohete y gradiente borroso por una narrativa técnica y 4 pilares de especialidad con iconos SVG
-  - [x] `Projects.tsx`: Tarjetas de proyectos con badges profesionales (sin emojis de trofeos/medallas) y prueba de impacto
-  - [x] `Education.tsx`: Timeline limpio con `SectionHeading` y tipografía mono para credenciales
-  - [x] `Skills.tsx`: Badges técnicos en `font-mono` con estética de ingeniería y bordes suaves
-  - [x] `Contact.tsx`: Tarjetas de contacto con iconos SVG vectoriales, botón para copiar email al portapapeles y sin emojis
-
-- [x] **Fase 5: Verificación y Calidad**
-  - [x] Comprobar `npm run build` y `npm run lint` (0 errores, 0 advertencias)
-  - [x] Probar modo día y noche
-  - [x] Probar cambio de idioma (ES, EN, PT)
-
+### 3. Interactividad del Nombre ("Fabricio López Reyes")
+- **Pilar 1 (Al cargar la página)**: Efecto *Hacker Text Scramble / Decoder* que arranca con caracteres hexadecimales y binarios (`01ABCDEF_#!<>/$*&~%`) y se resuelve de forma deliberada y progresiva de izquierda a derecha en ~1.7s (`38` iteraciones @ `45ms`).
+- **Pilar 3 (Modo normal / hover)**: Haz de luz / *Spotlight* magnético ultra-brillante (*shiny* specular luster) proyectado en base a coordenadas del ratón. Paleta puramente tecnológica y limpia en **Cyan Eléctrico, Hielo y Azul Zafiro Cobalto** (sin tonos violetas ni magentas). En modo oscuro cuenta con destello blanco especular (`#ffffff`) en el núcleo; en modo claro con gradiente azul cobalto de alto impacto. El degradado está recortado **estrictamente dentro de los glifos de las letras** (`WebkitBackgroundClip: "text"`, `WebkitTextFillColor: "transparent"`) sin manchar ni proyectarse en el contenedor exterior.
+- **Pilar 4 (Al hacer clic)**: Copia interactiva del comando de desarrollador (`npx fabricio`) al portapapeles con micro-badge flotante de confirmación temporal (`[✓ npx fabricio copiado!]`).

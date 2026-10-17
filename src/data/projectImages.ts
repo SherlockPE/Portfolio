@@ -62,6 +62,12 @@ export const nasaSpaceAppsImages: string[] = [
 export const medRecordsImages: string[] = [
   "/Med_Records/Lemon_hack_win.jpg",
   "/Med_Records/Lemon_hack_team.jpg",
+  "/Med_Records/1.jpeg",
+  "/Med_Records/2.jpeg",
+  "/Med_Records/3.jpeg",
+  "/Med_Records/4.jpeg",
+  "/Med_Records/5_team.jpeg",
+  "/Med_Records/6.jpeg",
 ];
 
 export const vottunHackImages: string[] = [

@@ -25,7 +25,7 @@ export default function Home() {
           <div className="relative mb-5 group">
             <div className="w-48 h-48 sm:w-48 sm:h-48 rounded-full overflow-hidden ring-4 ring-slate-100 dark:ring-slate-800 shadow-xl border-2 border-white dark:border-slate-900 transition-all duration-300 group-hover:scale-105 group-hover:ring-blue-500/40">
               <img
-                src="/profile_pic_doggy.png"
+                src="/linkedin_photo.jpg"
                 alt="Fabricio López Reyes"
                 className="w-full h-full object-cover"
               />
@@ -44,7 +44,7 @@ export default function Home() {
             <span>{t.role}</span>
           </div>
 
-          {/* Descripción con voz propia */}
+          {/* Descripción */}
           <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
             {t.description}
           </p>

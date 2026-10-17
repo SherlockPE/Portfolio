@@ -126,7 +126,7 @@ export const projectsData: ProjectItem[] = [
     tags: ["Startups", "Networking", "Innovation", "Telefónica"],
     link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
     images: wayraImages,
-    coverImage: "/Wayra/wayra.jpg",
+    coverImage: "/Wayra/Wayrra_3.jpg",
   },
 
   {id: "summer-hackathon-qwak",
@@ -148,7 +148,7 @@ export const projectsData: ProjectItem[] = [
     },
     tags: ["TypeScript", "React", "Telefónica OpenGateway", "MongoDB", "Docker"],
     link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
-    images: [...summerHackImages, ...laCabinaImages],
+    images: summerHackImages,
     coverImage: "/Summer_Hack_2025/summer_hack_1.jpg",
   },
 
