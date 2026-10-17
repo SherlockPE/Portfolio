@@ -85,7 +85,7 @@ export const projectsData: ProjectItem[] = [
     tags: ["Agentic AI", "Blockchain BSV", "ECDSA", "React", "TypeScript"],
     link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
     images: mergeHackImages,
-    coverImage: "/Merge_Hack_2025/Merge_winn.webp",
+    coverImage: "/Merge_Hack_2025/Merge_winners_team.jpg",
   },
 
   {id: "nasa-space-apps-2025",

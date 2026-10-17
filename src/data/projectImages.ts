@@ -16,10 +16,8 @@ export const hackSatImages: string[] = [
 ];
 
 export const mergeHackImages: string[] = [
-  "/Merge_Hack_2025/Merge_winn.webp",
   "/Merge_Hack_2025/Merge_winners_team.jpg",
-  "/Merge_Hack_2025/Merge_winners_team_2.jpg",
-  "/Merge_Hack_2025/Merge_winners_team_3.jpg",
+  // "/Merge_Hack_2025/Merge_winn.webp",
   "/Merge_Hack_2025/Hack_merge_11.jpg",
   "/Merge_Hack_2025/Merge_hack.jpg",
   "/Merge_Hack_2025/Merge_Hack_1.jpg",
@@ -72,8 +70,6 @@ export const medRecordsImages: string[] = [
 
 export const vottunHackImages: string[] = [
   "/Vottun_hack/vottun_first_hack.webp",
-  "/Vottun_hack/HAck_1votttun_3.jpg",
-  "/Vottun_hack/HAck_1_vottun_4.jpg",
 ];
 
 export const hackEsicImages: string[] = [
