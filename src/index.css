@@ -63,4 +63,11 @@
     transform: none !important;
     transition: none !important;
   }
+
+  #mobile-navigation,
+  #mobile-navigation * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
+
