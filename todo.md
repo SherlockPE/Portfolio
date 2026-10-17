@@ -17,6 +17,11 @@
 - [x] **Fase 5: Transición Circular de Tema (Circular Reveal)**
   - Implementación con View Transitions API (`startViewTransition` + `clipPath: circle(...)`).
   - Sincronización en `ThemeToggle.tsx` y `AppContext.tsx`.
+- [x] **Fase 6: Trayectoria Twin Layout & Proyectos de Sistemas 42 Madrid**
+  - **Twin Layout en Sección 02**: Experiencia Laboral y Educación & Formación organizadas en dos columnas paralelas en Desktop (`grid-cols-2`) y apiladas en móvil (`grid-cols-1`).
+  - **Experiencia Laboral (Orden Cronológico Inverso)**: QWAK (Startup), Algorithmics España (Profesor & Auxiliar Administrativo/Ventas), Mentoría Freelance (Superprof & Tusclasesparticulares unificados) y Picardías Eventos (expresión y dinamización).
+  - **Educación (Orden Cronológico Inverso)**: ESCP Business School, 42 Madrid (Sistemas), 42 Madrid (C Piscine), Escuela de Artes Escénicas ALEPH y UTEC. Sustitución de menciones de París por 42 Madrid Fundación Telefónica.
+  - **Proyectos de Sistemas en Sección 04**: Inclusión de Cub3D (Motor Raycasting en C), ft_irc (Servidor IRC Concurrente en C++) y Minishell (Shell Propia en C) con mini-terminal cards estilizadas y filtros interactivos por categoría (Todos, Sistemas & 42 Madrid, Hackathons).
 
 ---
 

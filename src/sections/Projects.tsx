@@ -12,17 +12,28 @@ import {
   FiX,
   FiChevronLeft,
   FiChevronRight,
+  FiTerminal,
+  FiCode,
 } from "react-icons/fi";
 
 export default function Projects() {
   const { language } = useApp();
   const t = translations[language].projects;
 
+  // Filtro de categorías: "all" | "systems" | "hackathons"
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "systems" | "hackathons">("all");
+
+  const filteredProjects = projectsData.filter((p) => {
+    if (selectedCategory === "all") return true;
+    return p.category === selectedCategory;
+  });
+
   // Estado para la galería / lightbox modal
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [activePhotoIdx, setActivePhotoIdx] = useState<number>(0);
 
   const openGallery = (project: ProjectItem, index = 0) => {
+    if (!project.images || project.images.length === 0) return;
     setSelectedProject(project);
     setActivePhotoIdx(index);
   };
@@ -71,9 +82,48 @@ export default function Projects() {
         subtitle={t.subtitle}
       />
 
+      {/* Selector de Filtros / Categorías */}
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+        <button
+          type="button"
+          onClick={() => setSelectedCategory("all")}
+          className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
+            selectedCategory === "all"
+              ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-500/50"
+              : "bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
+          }`}
+        >
+          {t.filterAll} ({projectsData.length})
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setSelectedCategory("systems")}
+          className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
+            selectedCategory === "systems"
+              ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-500/50"
+              : "bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
+          }`}
+        >
+          {t.filterSystems} ({projectsData.filter((p) => p.category === "systems").length})
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setSelectedCategory("hackathons")}
+          className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
+            selectedCategory === "hackathons"
+              ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-500/50"
+              : "bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800"
+          }`}
+        >
+          {t.filterHackathons} ({projectsData.filter((p) => p.category === "hackathons").length})
+        </button>
+      </div>
+
       {/* Grid de Proyectos y Hackathons */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {projectsData.map((project) => {
+        {filteredProjects.map((project) => {
           const hasImages = project.images && project.images.length > 0;
           const coverImg = project.coverImage || (hasImages ? project.images[0] : null);
 
@@ -82,7 +132,7 @@ export default function Projects() {
               key={project.id}
               className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-all hover:border-slate-400 dark:hover:border-slate-700 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/60 group"
             >
-              {/* Portada / Imagen del proyecto */}
+              {/* Portada / Imagen o Header de Terminal para proyectos de bajo nivel */}
               {coverImg ? (
                 <div
                   onClick={() => openGallery(project, 0)}
@@ -120,14 +170,30 @@ export default function Projects() {
                   )}
                 </div>
               ) : (
-                <div className="flex items-center justify-between gap-2 p-6 pb-0">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-blue-900/80">
-                    <FiAward className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
-                    <span>{project.badge[language]}</span>
-                  </span>
-                  <span className="text-xs font-mono text-slate-400">
-                    {project.period}
-                  </span>
+                <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-5 flex flex-col justify-between border-b border-slate-200 dark:border-slate-800">
+                  {/* Mini-Terminal Top Bar */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                      <span className="ml-2 text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+                        42_MADRID_CORE
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-white/10 text-slate-300 border border-white/10">
+                      {project.period}
+                    </span>
+                  </div>
+
+                  {/* Mini-Terminal Badge & Code Icon */}
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-blue-950/80 text-blue-300 border border-blue-800/60 backdrop-blur-sm">
+                      <FiTerminal className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <span>{project.badge[language]}</span>
+                    </span>
+                    <FiCode className="w-6 h-6 text-slate-600/60" />
+                  </div>
                 </div>
               )}
 
@@ -168,7 +234,10 @@ export default function Projects() {
                         <span>{t.viewGallery}</span>
                       </button>
                     ) : (
-                      <span />
+                      <span className="text-xs font-mono text-slate-400 flex items-center gap-1">
+                        <FiTerminal className="w-3 h-3 text-blue-500" />
+                        42 Academic
+                      </span>
                     )}
 
                     {project.link && (
@@ -207,7 +276,7 @@ export default function Projects() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                <span className="text-sm sm:text-base font-bold text-white font-mono">
+                <span className="text-sm sm:base font-bold text-white font-mono">
                   {selectedProject.title[language]}
                 </span>
                 <span className="text-xs font-mono text-blue-400">
@@ -218,17 +287,17 @@ export default function Projects() {
               <button
                 type="button"
                 onClick={closeGallery}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors text-xs font-mono cursor-pointer"
                 aria-label={t.close}
-                className="inline-flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
               >
                 <span>{t.close}</span>
                 <FiX className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Área principal de visualización de la foto */}
+            {/* Zona central: Imagen ampliada y controles de navegación */}
             <div
-              className="relative flex-1 flex items-center justify-center py-4 max-w-6xl w-full mx-auto min-h-0 overflow-hidden"
+              className="relative flex-1 flex items-center justify-center my-4 max-w-6xl w-full mx-auto overflow-hidden select-none"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Botón Anterior */}
@@ -236,19 +305,19 @@ export default function Projects() {
                 <button
                   type="button"
                   onClick={prevPhoto}
+                  className="absolute left-2 sm:left-4 z-10 p-3 rounded-full bg-black/60 text-white hover:bg-black/90 transition-all border border-white/20 hover:scale-110 cursor-pointer"
                   aria-label={t.prev}
-                  className="absolute left-2 sm:left-4 z-10 p-2 sm:p-3 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors border border-white/20 backdrop-blur-md cursor-pointer"
                 >
-                  <FiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <FiChevronLeft className="w-6 h-6" />
                 </button>
               )}
 
-              {/* Imagen Principal */}
-              <div className="relative flex items-center justify-center max-h-full max-w-full">
+              {/* Imagen activa */}
+              <div className="relative max-h-full max-w-full flex items-center justify-center">
                 <img
                   src={selectedProject.images[activePhotoIdx]}
                   alt={`${selectedProject.title[language]} - ${activePhotoIdx + 1}`}
-                  className="max-h-[62vh] sm:max-h-[68vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
+                  className="max-h-[68vh] sm:max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-2xl border border-white/10 select-none"
                 />
               </div>
 
@@ -257,36 +326,35 @@ export default function Projects() {
                 <button
                   type="button"
                   onClick={nextPhoto}
+                  className="absolute right-2 sm:right-4 z-10 p-3 rounded-full bg-black/60 text-white hover:bg-black/90 transition-all border border-white/20 hover:scale-110 cursor-pointer"
                   aria-label={t.next}
-                  className="absolute right-2 sm:right-4 z-10 p-2 sm:p-3 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors border border-white/20 backdrop-blur-md cursor-pointer"
                 >
-                  <FiChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <FiChevronRight className="w-6 h-6" />
                 </button>
               )}
             </div>
 
-            {/* Carrusel inferior de miniaturas */}
+            {/* Carrusel de miniaturas inferior */}
             {selectedProject.images.length > 1 && (
               <div
-                className="w-full max-w-6xl mx-auto pt-3 border-t border-white/10 flex items-center justify-center gap-2 overflow-x-auto py-2 px-1 shrink-0"
+                className="w-full max-w-4xl mx-auto pt-3 border-t border-white/10 flex items-center justify-center gap-2 overflow-x-auto py-2 shrink-0 select-none"
                 onClick={(e) => e.stopPropagation()}
               >
-                {selectedProject.images.map((imgSrc, idx) => (
+                {selectedProject.images.map((img, idx) => (
                   <button
-                    key={imgSrc + idx}
+                    key={idx}
                     type="button"
                     onClick={() => setActivePhotoIdx(idx)}
-                    className={`relative shrink-0 h-14 w-20 sm:h-16 sm:w-24 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                    className={`relative h-12 w-16 sm:h-14 sm:w-20 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
                       activePhotoIdx === idx
-                        ? "border-blue-500 scale-105 shadow-md shadow-blue-500/30"
-                        : "border-transparent opacity-60 hover:opacity-100 hover:border-white/50"
+                        ? "border-blue-500 scale-105 shadow-md shadow-blue-500/50"
+                        : "border-transparent opacity-50 hover:opacity-100"
                     }`}
                   >
                     <img
-                      src={imgSrc}
-                      alt={`Miniatura ${idx + 1}`}
+                      src={img}
+                      alt={`Thumbnail ${idx + 1}`}
                       className="h-full w-full object-cover"
-                      loading="lazy"
                     />
                   </button>
                 ))}
