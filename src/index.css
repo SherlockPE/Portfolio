@@ -128,6 +128,13 @@
   }
 }
 
+/* estoy desactivandods temporalmente las transiciones CSS durante la captura del tema para evitar dobles animaciones y lag */
+.disable-transitions,
+.disable-transitions * {
+  transition: none !important;
+}
+
+
 /* Scroll reveal */
 .reveal-on-scroll {
   opacity: 0;
