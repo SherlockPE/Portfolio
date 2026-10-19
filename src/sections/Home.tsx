@@ -1,6 +1,7 @@
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
 import { FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
+import { SiArchlinux } from "react-icons/si";
 import InteractiveName from "../components/InteractiveName";
 
 export default function Home() {
@@ -95,8 +96,9 @@ export default function Home() {
                 <span className="w-3 h-3 rounded-full bg-amber-400/80" />
                 <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
               </div>
-              <span className="font-mono text-xs font-bold text-theme-text">
-                fabricio@42madrid: ~/stack
+              <span className="font-mono text-xs font-bold text-theme-text inline-flex items-center gap-1.5">
+                <SiArchlinux className="w-3.5 h-3.5 text-[#1793d1]" title="Arch Linux" />
+                <span>fabricio@archlinux: ~/stack</span>
               </span>
               <div className="w-12" />
             </div>

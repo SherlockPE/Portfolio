@@ -1,7 +1,7 @@
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
 import SectionHeading from "../components/SectionHeading";
-import { FiTerminal, FiLayers, FiZap, FiUsers } from "react-icons/fi";
+import { FiTerminal, FiLayers, FiZap, FiUsers, FiCompass } from "react-icons/fi";
 
 export default function About() {
   const { language } = useApp();
@@ -43,6 +43,26 @@ export default function About() {
                   <span className="text-theme-accent font-bold select-none shrink-0">•</span>
                   <span>{point}</span>
                 </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Áreas de Interés & Exploración Técnica (Incluye Ada / SPARK) */}
+          <div className="p-5 rounded-2xl border border-theme-border/80 bg-theme-card/80 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs">
+            <div className="flex items-center gap-2 text-theme-muted border-b border-theme-border-subtle pb-2">
+              <FiCompass className="w-4 h-4 text-theme-accent" />
+              <span className="font-bold text-theme-text uppercase tracking-wider text-[11px]">
+                {t.interestsTitle}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2 pt-1">
+              {t.interests.map((interest: string, idx: number) => (
+                <span
+                  key={idx}
+                  className="px-2.5 py-1 rounded-lg bg-theme-bg border border-theme-border-subtle text-[11px] text-theme-secondary font-mono hover:border-theme-accent/40 transition-colors"
+                >
+                  {interest}
+                </span>
               ))}
             </div>
           </div>

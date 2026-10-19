@@ -135,18 +135,6 @@ export const skillsData: SkillCategory[] = [
           pt: "Implementação do zero em C de listas encadeadas, filas, pilhas, tabelas hash e árvores sintáticas.",
         },
       },
-      {
-        id: "raycasting",
-        name: "Raycasting & Gráficos 3D",
-        icon: "circuit",
-        badge: "MiniLibX & Algoritmo DDA",
-        category: "systems",
-        description: {
-          es: "Motor 3D tipo Wolfenstein en C con MiniLibX: algoritmo DDA, cálculo trigonométrico, proyección euclidiana y detección de colisiones.",
-          en: "Wolfenstein-style 3D raycasting engine in C with MiniLibX: DDA algorithm, euclidean projections, and collision detection.",
-          pt: "Motor 3D estilo Wolfenstein em C com MiniLibX: algoritmo DDA e cálculos trigonométricos em tempo real.",
-        },
-      },
     ],
   },
   {
@@ -200,18 +188,6 @@ export const skillsData: SkillCategory[] = [
           es: "Servidores backend asíncronos en Node.js, arquitectura de capas, middlewares de validación/seguridad y endpoints RESTful.",
           en: "Asynchronous backend servers in Node.js, layered architecture, validation/auth middlewares, and RESTful endpoints.",
           pt: "Servidores backend assíncronos em Node.js, arquitetura em camadas e endpoints RESTful.",
-        },
-      },
-      {
-        id: "mongodb",
-        name: "MongoDB",
-        icon: "mongodb",
-        badge: "Bases NoSQL & Colecciones BSON",
-        category: "fullstack",
-        description: {
-          es: "Almacenamiento NoSQL flexible orientado a documentos BSON, modelado de esquemas dinámicos y pipelines de agregación.",
-          en: "Document-oriented NoSQL storage with BSON, dynamic schema modeling, and aggregation pipelines.",
-          pt: "Armazenamento NoSQL orientado a documentos BSON e pipelines de agregação.",
         },
       },
       {

@@ -14,6 +14,7 @@ import {
   FiChevronRight,
   FiTerminal,
   FiCode,
+  FiInfo,
 } from "react-icons/fi";
 
 export default function Projects() {
@@ -130,14 +131,29 @@ export default function Projects() {
           return (
             <div
               key={project.id}
-              className="flex flex-col overflow-hidden rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover shadow-xs transition-all hover:border-theme-border-glow hover:shadow-xl backdrop-blur-xs group"
+              onClick={(e) => {
+                if ((e.target as HTMLElement).closest("a")) return;
+                if (hasImages) openGallery(project, 0);
+              }}
+              role={hasImages ? "button" : undefined}
+              tabIndex={hasImages ? 0 : undefined}
+              onKeyDown={(e) => {
+                if (!hasImages) return;
+                if (e.key === "Enter" || e.key === " ") {
+                  if ((e.target as HTMLElement).closest("a")) return;
+                  e.preventDefault();
+                  openGallery(project, 0);
+                }
+              }}
+              className={`flex flex-col overflow-hidden rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover shadow-xs transition-all hover:border-theme-border-glow hover:shadow-xl backdrop-blur-xs group ${
+                hasImages ? "cursor-pointer" : ""
+              }`}
             >
               {/* Portada / Imagen o Header de Terminal para proyectos de bajo nivel */}
               {coverImg ? (
                 <div
-                  onClick={() => openGallery(project, 0)}
-                  className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer select-none"
-                  title={`${t.viewGallery} (${project.images.length} ${t.photosCount})`}
+                  className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 select-none"
+                  title={hasImages ? `${t.viewGallery} (${project.images.length} ${t.photosCount})` : undefined}
                 >
                   <img
                     src={coverImg}
@@ -164,9 +180,9 @@ export default function Projects() {
                   </div>
 
                   {/* Contador de fotos inferior con icono de cámara */}
-                  {project.images.length > 1 && (
-                    <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-md bg-black/75 text-white backdrop-blur-md border border-white/15 hover:bg-black/90 transition-colors">
-                      <FiCamera className="w-3.5 h-3.5 text-blue-400" />
+                  {project.images.length > 0 && (
+                    <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-md bg-black/75 text-white backdrop-blur-md border border-white/15 group-hover:bg-theme-accent group-hover:border-theme-accent/50 transition-colors shadow-sm">
+                      <FiCamera className="w-3.5 h-3.5 text-blue-400 group-hover:text-white" />
                       <span>
                         {project.images.length} {t.photosCount}
                       </span>
@@ -229,14 +245,12 @@ export default function Projects() {
                   {/* Acciones: Ver Galería y Ver Enlace */}
                   <div className="flex items-center justify-between gap-3 pt-1">
                     {hasImages ? (
-                      <button
-                        type="button"
-                        onClick={() => openGallery(project, 0)}
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-theme-secondary hover:text-theme-accent transition-colors cursor-pointer"
-                      >
+                      <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-theme-secondary group-hover:text-theme-accent transition-colors">
                         <FiImage className="w-3.5 h-3.5" />
-                        <span>{t.viewGallery}</span>
-                      </button>
+                        <span>
+                          {t.viewGallery} ({project.images.length})
+                        </span>
+                      </span>
                     ) : (
                       <span className="text-xs font-mono text-theme-faint flex items-center gap-1">
                         <FiTerminal className="w-3 h-3 text-theme-accent" />
@@ -249,7 +263,8 @@ export default function Projects() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-theme-accent hover:underline"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-theme-accent hover:underline relative z-10"
                       >
                         <span>{t.viewPost}</span>
                         <FiExternalLink className="w-3.5 h-3.5" />
@@ -261,6 +276,14 @@ export default function Projects() {
             </div>
           );
         })}
+      </div>
+
+      {/* Mensaje de ayuda / UX helper idéntico al de Skills */}
+      <div className="mt-8 flex items-center justify-between text-xs font-mono text-theme-faint px-2">
+        <p className="flex items-center gap-1.5">
+          <FiInfo className="w-3.5 h-3.5 text-theme-accent shrink-0" />
+          <span>{t.clickCardHint}</span>
+        </p>
       </div>
 
       {/* Lightbox */}
