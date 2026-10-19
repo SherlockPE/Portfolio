@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { FiCheck, FiTerminal } from "react-icons/fi";
+import { FiCheck, FiLink } from "react-icons/fi";
 import { useApp } from "../context/AppContext";
 
 const TARGET_FIRST = "Fabricio";
@@ -10,6 +10,18 @@ const COPY_TEXT = {
   es: "copiado!",
   en: "copied!",
   pt: "copiado!",
+} as const;
+
+const TOOLTIP_TEXT = {
+  es: "clic para copiar enlace",
+  en: "click to copy link",
+  pt: "clique para copiar o link",
+} as const;
+
+const TITLE_TEXT = {
+  es: "Haz clic para copiar enlace 'https://www.fabriciolopezreyes.tech/'",
+  en: "Click to copy link 'https://www.fabriciolopezreyes.tech/'",
+  pt: "Clique para copiar o link 'https://www.fabriciolopezreyes.tech/'",
 } as const;
 
 export default function InteractiveName() {
@@ -82,9 +94,9 @@ export default function InteractiveName() {
     setIsHovering(false);
   };
 
-  // 4. Acción al Clic: Copiar comando de terminal al portapapeles
+  // 4. Acción al Clic: Copiar enlace al portapapeles
   const handleClick = () => {
-    navigator.clipboard.writeText("npx fabricio");
+    navigator.clipboard.writeText("https://www.fabriciolopezreyes.tech/");
     setCopied(true);
     setTimeout(() => setCopied(false), 2400);
   };
@@ -97,7 +109,7 @@ export default function InteractiveName() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="relative text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] cursor-pointer group transition-all"
-        title="Haz clic para copiar comando 'npx fabricio'"
+        title={TITLE_TEXT[language]}
       >
         <span className="text-slate-950 dark:text-white transition-colors duration-200">
           {displayTextFirst}
@@ -129,9 +141,9 @@ export default function InteractiveName() {
 
       {/* 4. Feedback flotante al hacer clic */}
       {copied && (
-        <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 text-xs font-mono font-semibold shadow-lg animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 text-xs font-mono font-semibold shadow-lg animate-in fade-in zoom-in-95 duration-150 whitespace-nowrap">
           <FiCheck className="w-3.5 h-3.5 text-emerald-400 dark:text-emerald-600" />
-          <span>fabricio lopez reyes</span>
+          <span>fabriciolopezreyes.tech</span>
           <span className="text-[10px] text-slate-400 dark:text-slate-500">{COPY_TEXT[language]}</span>
         </div>
       )}
@@ -139,8 +151,8 @@ export default function InteractiveName() {
       {/* Micro-pista tooltip que se muestra con hover suave */}
       {!copied && (
         <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute -bottom-6 left-0 text-[11px] font-mono text-slate-400 dark:text-slate-500 flex items-center gap-1">
-          <FiTerminal className="w-3 h-3 text-blue-500" />
-          <span>clic para copiar npx</span>
+          <FiLink className="w-3 h-3 text-blue-500" />
+          <span>{TOOLTIP_TEXT[language]}</span>
         </span>
       )}
     </div>

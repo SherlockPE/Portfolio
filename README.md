@@ -2,6 +2,10 @@
 
 Portfolio personal de **Fabricio López Reyes**, graduado de **42 Madrid** y desarrollador de software.
 
+🌐 **Website**: [fabriciolopezreyes.tech](https://www.fabriciolopezreyes.tech/)
+
+![Preview del Portfolio](public/example.png)
+
 ## 🚀 Características
 
 - **Trilingüe**: Soporte nativo para Español, Inglés y Portugués con persistencia en `localStorage`.
@@ -37,6 +41,7 @@ pnpm build
 
 ## 👤 Contacto
 
+- **Web**: [fabriciolopezreyes.tech](https://www.fabriciolopezreyes.tech/)
 - **GitHub**: [@SherlockPE](https://github.com/SherlockPE)
 - **LinkedIn**: [Fabricio López Reyes](https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/)
 - **Ubicación**: Torrejón de Ardoz, Madrid, España
