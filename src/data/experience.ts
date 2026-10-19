@@ -23,7 +23,43 @@ export interface ExperienceItem {
 }
 
 export const experienceData: ExperienceItem[] = [
-  {id: "algorithmics-espana",
+  {
+    id: "systems-consultant-freelance",
+    company: "Freelance · Consultoría & Ingeniería de Software",
+    role: {
+      es: "Consultor de Sistemas de Bajo Nivel & Desarrollador Web Fullstack",
+      en: "Low-Level Systems Consultant & Fullstack Web Developer",
+      pt: "Consultor de Sistemas de Baixo Nível & Desenvolvedor Web Fullstack",
+    },
+    period: "ene. 2024 - Actualidad",
+    location: "Madrid · Remoto / Freelance",
+    description: {
+      es: "Servicios de consultoría técnica y desarrollo independiente: auditoría y optimización de rendimiento en sistemas de bajo nivel (C/C++), resolución de fugas de memoria con Valgrind/GDB, desarrollo fullstack de aplicaciones web y asesoría integral de arquitectura digital.",
+      en: "Independent technical consulting and engineering: performance optimization and debugging in low-level systems (C/C++), Valgrind/GDB memory leak diagnostics, full-stack web application development, and digital architecture advisory.",
+      pt: "Consultoria técnica e desenvolvimento independente: diagnóstico e otimização de sistemas de baixo nível (C/C++), eliminação de vazamentos com Valgrind/GDB, desenvolvimento web fullstack e assessoria técnica.",
+    },
+    details: {
+      es: [
+        "Consultoría en Sistemas de Bajo Nivel: Auditoría de código C/C++, diagnóstico de cuellos de botella de CPU/memoria y resolución de fugas de memoria con Valgrind (--leak-check=full) y GDB.",
+        "Desarrollo Fullstack & Asesoría Web: Construcción de aplicaciones web de alto impacto con React 19, TypeScript, Node.js y modelado de bases de datos relacionales en PostgreSQL (índices, consultas complejas y ACID).",
+        "Arquitectura & Despliegue: Asesoría técnica a clientes en modernización de software hacia estándares POSIX, creación de APIs REST modulares y contenedores Docker.",
+      ],
+      en: [
+        "Low-Level Systems Consulting: Technical auditing of C & C++ codebases, diagnosing CPU/memory bottlenecks, and eliminating memory leaks with Valgrind (--leak-check=full) and GDB.",
+        "Fullstack Development & Web Advisory: Engineering modern web platforms using React 19, TypeScript, Node.js, and relational database architecture with PostgreSQL (indexes, complex queries, and ACID compliance).",
+        "Architecture & Deployment: Technical advisory on modernizing legacy software to POSIX standards, building modular REST APIs, and Docker containerization.",
+      ],
+      pt: [
+        "Consultoria em Sistemas de Baixo Nível: Auditoria de código C/C++, diagnóstico de gargalos de CPU/memória e eliminação de vazamentos com Valgrind e GDB.",
+        "Desenvolvimento Fullstack & Assessoria Web: Construção de plataformas web com React 19, TypeScript, Node.js e bancos de dados PostgreSQL.",
+        "Arquitetura & Implantação: Assessoria técnica na modernização para padrões POSIX, APIs REST modulares e conteinerização com Docker.",
+      ],
+    },
+    tags: ["C", "C++", "Consultoría Low-Level", "Valgrind", "PostgreSQL", "Fullstack", "React", "TypeScript", "Docker"],
+    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
+  },
+  {
+    id: "algorithmics-espana",
     company: "Algorithmics España",
     role: {
       es: "Profesor de Programación & Auxiliar Administrativo",
