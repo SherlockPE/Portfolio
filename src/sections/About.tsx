@@ -3,16 +3,16 @@ import { translations } from "../data/translations";
 import SectionHeading from "../components/SectionHeading";
 import { FiTerminal, FiLayers, FiZap, FiUsers, FiCompass } from "react-icons/fi";
 
+const pillarIcons = [
+  <FiTerminal key="1" className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+  <FiLayers key="2" className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
+  <FiZap key="3" className="w-5 h-5 text-amber-600 dark:text-amber-400" />,
+  <FiUsers key="4" className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+];
+
 export default function About() {
   const { language } = useApp();
   const t = translations[language].about;
-
-  const pillarIcons = [
-    <FiTerminal key="1" className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
-    <FiLayers key="2" className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />,
-    <FiZap key="3" className="w-5 h-5 text-amber-600 dark:text-amber-400" />,
-    <FiUsers key="4" className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
-  ];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">

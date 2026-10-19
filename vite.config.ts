@@ -8,5 +8,23 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  build: {
+    target: 'esnext',
+    cssCodeSplit: true,
+    modulePreload: { polyfill: false },
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor-react';
+          }
+          if (id.includes('node_modules/react-icons/')) {
+            return 'vendor-icons';
+          }
+        },
+      },
+    },
+  },
 })
+
 

@@ -109,29 +109,37 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<SkillCategoryId>("all");
   const [activeModalSkill, setActiveModalSkill] = useState<SkillItem | null>(null);
 
-  const categories: { id: SkillCategoryId; label: string; count: number }[] = [
-    { id: "all", label: t.filterAll, count: allSkills.length },
+  const categories = useMemo(() => [
+    { id: "all" as const, label: t.filterAll, count: allSkills.length },
     {
-      id: "systems",
+      id: "systems" as const,
       label: t.filterSystems,
       count: allSkills.filter((s) => s.category === "systems").length,
     },
     {
-      id: "fullstack",
+      id: "fullstack" as const,
       label: t.filterFullstack,
       count: allSkills.filter((s) => s.category === "fullstack").length,
     },
     {
-      id: "frontend",
+      id: "frontend" as const,
       label: t.filterFrontend,
       count: allSkills.filter((s) => s.category === "frontend").length,
     },
     {
-      id: "devops",
+      id: "devops" as const,
       label: t.filterDevops,
       count: allSkills.filter((s) => s.category === "devops").length,
     },
-  ];
+  ], [t]);
+
+  const categoryNameMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    for (const c of skillsData) {
+      map[c.id] = c.categoryName[language] || c.id;
+    }
+    return map;
+  }, [language]);
 
   const filteredSkills = useMemo(() => {
     if (activeCategory === "all") return allSkills;
@@ -212,9 +220,7 @@ export default function Skills() {
       {/* Grid de Tecnologías: Tarjeta frontal limpia + Tarjetitas flotantes que suben en hover (Desktop) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
         {filteredSkills.map((skill) => {
-          const categoryName =
-            skillsData.find((c) => c.id === skill.category)?.categoryName[language] ||
-            skill.category;
+          const categoryName = categoryNameMap[skill.category] || skill.category;
 
           return (
             <div

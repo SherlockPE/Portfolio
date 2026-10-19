@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
 import ThemeToggle from "./ThemeToggle";
@@ -10,36 +10,35 @@ export default function Navbar() {
   const t = translations[language].nav;
   const [isOpen, setIsOpen] = useState(false);
 
-  // Cerrar menú con la tecla Escape
+  // Escuchar Escape y Resize solo cuando el menú móvil está abierto
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-      }
+      if (e.key === "Escape") setIsOpen(false);
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
-  // Cerrar menú si la pantalla se redimensiona a escritorio (>= 768px)
-  useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setIsOpen(false);
-      }
+      if (window.innerWidth >= 768) setIsOpen(false);
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
-  const navItems = [
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize, { passive: true });
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isOpen]);
+
+  const navItems = useMemo(() => [
     { href: "#home", label: t.home, num: "01" },
     { href: "#about", label: t.about, num: "02" },
     { href: "#education", label: t.education, num: "03" },
     { href: "#skills", label: t.skills, num: "04" },
     { href: "#projects", label: t.projects, num: "05" },
     { href: "#contact", label: t.contact, num: "06" },
-  ];
+  ], [t]);
 
   return (
     <>

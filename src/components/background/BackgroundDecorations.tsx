@@ -1,7 +1,8 @@
 export default function BackgroundDecorations() {
   return (
     <div
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden transform-gpu"
+      style={{ transform: "translateZ(0)", contain: "strict" }}
       aria-hidden="true"
     >
       {/* Fondo cuadriculado */}

@@ -17,11 +17,11 @@ export default function InteractiveName() {
   const [displayTextFirst, setDisplayTextFirst] = useState(TARGET_FIRST);
   const [displayTextLast, setDisplayTextLast] = useState(TARGET_LAST);
   const [copied, setCopied] = useState(false);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLHeadingElement>(null);
+  const spotlightRef = useRef<HTMLSpanElement>(null);
 
   // 1. Efecto Desencriptación Hacker (Text Scramble) al cargar la página
-  // Más pausadooooooooo, tengo hambreeeeee: ~1.7s con decodificación progresiva de izquierda a derecha
   const runScramble = useCallback(() => {
     let iteration = 0;
     const maxIterations = 38;
@@ -66,18 +66,17 @@ export default function InteractiveName() {
     };
   }, [runScramble]);
 
-  // 3. Efecto Haz de Luz / Spotlight magnético en modo normal, necessito detectar donde están la x y la y de mi cursor, alguien deme unas pataatas me muero de hambre, quiero trabajo xd
+  // 3. Efecto Haz de Luz / Spotlight magnético acelerado por CSS variables (0 React re-renders)
   const handleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !spotlightRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    spotlightRef.current.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    spotlightRef.current.style.setProperty("--y", `${e.clientY - rect.top}px`);
+    if (!isHovering) setIsHovering(true);
   };
 
   const handleMouseLeave = () => {
-    setMousePos(null);
+    setIsHovering(false);
   };
 
   // 4. Acción al Clic: Copiar comando de terminal al portapapeles
@@ -104,24 +103,25 @@ export default function InteractiveName() {
           {displayTextLast}
         </span>
 
-        {mousePos && (
-          <span
-            aria-hidden="true"
-            className="w-full h-full pointer-events-none absolute inset-0 select-none transition-opacity duration-150"
-            style={{
-              backgroundImage:
-                theme === "dark"
-                  ? `radial-gradient(200px circle at ${mousePos.x}px ${mousePos.y}px, #ffffff 0%, rgba(186, 230, 253, 1) 18%, rgba(56, 189, 248, 0.95) 38%, rgba(37, 99, 235, 0.85) 62%, rgba(29, 78, 216, 0.3) 80%, transparent 92%)`
-                  : `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px, rgba(14, 165, 233, 1) 0%, rgba(2, 132, 199, 1) 25%, rgba(37, 99, 235, 0.95) 50%, rgba(29, 78, 216, 0.8) 72%, transparent 90%)`,
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "transparent",
-            }}
-          >
-            {displayTextFirst} {displayTextLast}
-          </span>
-        )}
+        <span
+          ref={spotlightRef}
+          aria-hidden="true"
+          className={`w-full h-full pointer-events-none absolute inset-0 select-none transition-opacity duration-150 ${
+            isHovering ? "opacity-100" : "opacity-0"
+          }`}
+          style={{
+            backgroundImage:
+              theme === "dark"
+                ? `radial-gradient(200px circle at var(--x, 0px) var(--y, 0px), #ffffff 0%, rgba(186, 230, 253, 1) 18%, rgba(56, 189, 248, 0.95) 38%, rgba(37, 99, 235, 0.85) 62%, rgba(29, 78, 216, 0.3) 80%, transparent 92%)`
+                : `radial-gradient(300px circle at var(--x, 0px) var(--y, 0px), rgba(14, 165, 233, 1) 0%, rgba(2, 132, 199, 1) 25%, rgba(37, 99, 235, 0.95) 50%, rgba(29, 78, 216, 0.8) 72%, transparent 90%)`,
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            color: "transparent",
+          }}
+        >
+          {displayTextFirst} {displayTextLast}
+        </span>
       </h1>
 
       {/* 4. Feedback flotante al hacer clic */}

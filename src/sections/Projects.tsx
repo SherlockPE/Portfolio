@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useApp } from "../context/AppContext";
 import { translations } from "../data/translations";
@@ -32,10 +32,13 @@ export default function Projects() {
   // Filtro de categorías: "all" | "systems" | "hackathons"
   const [selectedCategory, setSelectedCategory] = useState<"all" | "systems" | "hackathons">("all");
 
-  const filteredProjects = projectsData.filter((p) => {
-    if (selectedCategory === "all") return true;
-    return p.category === selectedCategory;
-  });
+  const systemsCount = useMemo(() => projectsData.filter((p) => p.category === "systems").length, []);
+  const hackathonsCount = useMemo(() => projectsData.filter((p) => p.category === "hackathons").length, []);
+
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === "all") return projectsData;
+    return projectsData.filter((p) => p.category === selectedCategory);
+  }, [selectedCategory]);
 
   // Estado para la galería / lightbox modal
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
@@ -114,7 +117,7 @@ export default function Projects() {
               : "bg-white dark:bg-theme-card text-slate-700 dark:text-theme-secondary hover:bg-slate-100 dark:hover:bg-theme-card-hover border border-slate-300 dark:border-theme-border shadow-xs"
           }`}
         >
-          {t.filterSystems} ({projectsData.filter((p) => p.category === "systems").length})
+          {t.filterSystems} ({systemsCount})
         </button>
 
         <button
@@ -126,7 +129,7 @@ export default function Projects() {
               : "bg-white dark:bg-theme-card text-slate-700 dark:text-theme-secondary hover:bg-slate-100 dark:hover:bg-theme-card-hover border border-slate-300 dark:border-theme-border shadow-xs"
           }`}
         >
-          {t.filterHackathons} ({projectsData.filter((p) => p.category === "hackathons").length})
+          {t.filterHackathons} ({hackathonsCount})
         </button>
       </div>
 
@@ -170,8 +173,11 @@ export default function Projects() {
                   <img
                     src={resolvedCoverSrc}
                     alt={project.title[language]}
+                    width={600}
+                    height={340}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
                   />
                   {/* Gradiente sutil para legibilidad de badges */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-slate-950/45" />

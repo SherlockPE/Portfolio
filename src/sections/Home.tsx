@@ -23,11 +23,18 @@ export default function Home() {
           <div className="relative mb-6 group">
             <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-blue-500/35 via-indigo-500/25 to-blue-600/35 blur-lg opacity-60 group-hover:opacity-95 transition-opacity duration-500" />
             <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full overflow-hidden ring-4 ring-theme-border/70 shadow-2xl border-2 border-theme-bg transition-all duration-300 group-hover:scale-105">
-              <img
-                src="/linkedin_photo.jpg"
-                alt="Fabricio López Reyes"
-                className="w-full h-full object-cover"
-              />
+              <picture>
+                <source srcSet="/linkedin_photo.webp" type="image/webp" />
+                <img
+                  src="/linkedin_photo.jpg"
+                  alt="Fabricio López Reyes"
+                  width={192}
+                  height={192}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+              </picture>
             </div>
           </div>
 
@@ -128,11 +135,18 @@ export default function Home() {
 
               <div className="pt-2 border-t border-theme-border-subtle">
                 <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src="/profile_pic_doggy.png"
-                    alt="Fabricio López Reyes"
-                    className="w-14 h-14 rounded-xl object-cover ring-2 ring-theme-accent/40 shadow-md"
-                  />
+                  <picture>
+                    <source srcSet="/profile_pic_doggy.webp" type="image/webp" />
+                    <img
+                      src="/profile_pic_doggy.png"
+                      alt="Fabricio López Reyes"
+                      width={56}
+                      height={56}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-14 h-14 rounded-xl object-cover ring-2 ring-theme-accent/40 shadow-md"
+                    />
+                  </picture>
                   <div>
                     <p className="font-bold text-theme-text text-sm">
                       Fabricio López Reyes

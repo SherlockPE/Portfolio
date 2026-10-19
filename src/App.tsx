@@ -1,13 +1,15 @@
+import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./sections/Home";
-import About from "./sections/About";
-import Education from "./sections/Education";
-import Skills from "./sections/Skills";
-import Projects from "./sections/Projects";
-import Contact from "./sections/Contact";
 import Footer from "./components/Footer";
 import BackgroundDecorations from "./components/background/BackgroundDecorations";
 import { useScrollReveal } from "./hooks/useScrollReveal";
+
+const About = lazy(() => import("./sections/About"));
+const Education = lazy(() => import("./sections/Education"));
+const Skills = lazy(() => import("./sections/Skills"));
+const Projects = lazy(() => import("./sections/Projects"));
+const Contact = lazy(() => import("./sections/Contact"));
 
 export default function App() {
   useScrollReveal();
@@ -22,20 +24,30 @@ export default function App() {
           <section id="home" className="reveal-on-scroll">
             <Home />
           </section>
-          <section id="about" className="bg-theme-subtle/40 border-y border-theme-border-subtle/50 backdrop-blur-xs reveal-on-scroll">
-            <About />
+          <section id="about" className="bg-theme-subtle/40 border-y border-theme-border-subtle/50 backdrop-blur-xs reveal-on-scroll content-visibility-auto">
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <About />
+            </Suspense>
           </section>
-          <section id="education" className="reveal-on-scroll">
-            <Education />
+          <section id="education" className="reveal-on-scroll content-visibility-auto">
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <Education />
+            </Suspense>
           </section>
-          <section id="skills" className="bg-theme-subtle/40 border-y border-theme-border-subtle/50 backdrop-blur-xs reveal-on-scroll">
-            <Skills />
+          <section id="skills" className="bg-theme-subtle/40 border-y border-theme-border-subtle/50 backdrop-blur-xs reveal-on-scroll content-visibility-auto">
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+              <Skills />
+            </Suspense>
           </section>
-          <section id="projects" className="reveal-on-scroll">
-            <Projects />
+          <section id="projects" className="reveal-on-scroll content-visibility-auto">
+            <Suspense fallback={<div className="min-h-[500px]" />}>
+              <Projects />
+            </Suspense>
           </section>
-          <section id="contact" className="bg-theme-subtle/40 border-t border-theme-border-subtle/50 backdrop-blur-xs reveal-on-scroll">
-            <Contact />
+          <section id="contact" className="bg-theme-subtle/40 border-t border-theme-border-subtle/50 backdrop-blur-xs reveal-on-scroll content-visibility-auto">
+            <Suspense fallback={<div className="min-h-[300px]" />}>
+              <Contact />
+            </Suspense>
           </section>
         </main>
         <Footer />
