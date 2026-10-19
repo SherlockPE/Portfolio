@@ -97,7 +97,6 @@ export default function InteractiveName() {
         className="relative text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] cursor-pointer group transition-all"
         title="Haz clic para copiar comando 'npx fabricio'"
       >
-        {/* Capa de texto base con sus colores de diseño */}
         <span className="text-slate-950 dark:text-white transition-colors duration-200">
           {displayTextFirst}
         </span>{" "}
@@ -105,9 +104,6 @@ export default function InteractiveName() {
           {displayTextLast}
         </span>
 
-        {/* 3. Haz de luz sutil proyectado según posición del ratón.
-            IMPORTANTE: Contiene exactamente el texto para que WebkitBackgroundClip: "text"
-            recorte el degradado radial ÚNICAMENTE dentro de las letras, sin manchar el contenedor. */}
         {mousePos && (
           <span
             aria-hidden="true"

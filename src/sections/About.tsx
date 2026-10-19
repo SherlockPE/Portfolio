@@ -23,7 +23,6 @@ export default function About() {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        {/* Narrativa humana personal */}
         <div className="lg:col-span-5 space-y-6">
           <p className="text-base sm:text-lg leading-relaxed text-theme-secondary">
             {t.description}
@@ -32,19 +31,23 @@ export default function About() {
           <div className="p-5 rounded-2xl border border-theme-border bg-theme-card/90 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs text-theme-muted">
             <div className="flex items-center justify-between text-theme-muted border-b border-theme-border-subtle pb-2">
               <span className="font-bold text-theme-text uppercase tracking-wider">
-                Base Metodológica
+                {t.methodologyTitle}
               </span>
-              <span className="text-theme-accent">42 Network</span>
+              <span className="text-theme-accent font-semibold px-2 py-0.5 rounded-full bg-theme-accent/10 border border-theme-accent/20">
+                {t.methodologyBadge}
+              </span>
             </div>
-            <div className="space-y-1.5 text-theme-secondary">
-              <p>• Proyectos prácticos en C/C++ sin librerías estándar mágicas</p>
-              <p>• Evaluación continua entre pares (peer evaluation)</p>
-              <p>• Autonomía total frente a la documentación y el código fuente</p>
+            <div className="space-y-2 text-theme-secondary">
+              {t.methodologyPoints.map((point: string, idx: number) => (
+                <p key={idx} className="flex items-start gap-2">
+                  <span className="text-theme-accent font-bold select-none shrink-0">•</span>
+                  <span>{point}</span>
+                </p>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* 4 Pilares de competencia técnica */}
         <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {t.pillars.map((pillar, idx) => (
             <div

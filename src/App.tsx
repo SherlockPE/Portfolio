@@ -14,10 +14,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen antialiased bg-theme-bg text-theme-text selection:bg-theme-accent selection:text-white transition-colors duration-300 relative overflow-x-hidden">
-      {/* Atmósfera: Luces volumétricas y cuadrícula técnica de desarrollador */}
       <BackgroundDecorations />
 
-      {/* Contenido principal en capa superior */}
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">

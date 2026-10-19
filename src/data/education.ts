@@ -36,6 +36,26 @@ export const educationData: EducationItem[] = [
       en: "High-intensity peer-to-peer computer science curriculum without teachers. Deep focus on C and C++ software engineering, graphic engines, network protocols, and Unix operating system architectures.",
       pt: "Formação intensiva peer-to-peer sem professores. Foco em engenharia de software em C e C++, motores gráficos, protocolos de rede e arquitetura de sistemas Unix.",
     },
+    details: {
+      es: [
+        "Arquitectura de Unix Shell (Minishell): reimplementación de Bash con parsing AST, control de procesos con fork()/execve(), redirecciones, pipes y señales POSIX.",
+        "Servidor concurrente RFC 1459 (ft_irc): sockets TCP no bloqueantes con multiplexación I/O (poll), autenticación y canales en C++98.",
+        "Motor gráfico 3D (Cub3D): algoritmo de raycasting DDA (Wolfenstein 3D) en C con MiniLibX, proyección euclidiana y colisiones en tiempo real.",
+        "Cero memory leaks: proyectos verificados estrictamente con Valgrind (--leak-check=full) bajo flags -Wall -Wextra -Werror -pedantic.",
+      ],
+      en: [
+        "Unix Shell Architecture (Minishell): Bash reimplementation with AST parsing, process execution via fork()/execve(), piping, and POSIX signal handling.",
+        "RFC 1459 Concurrent Server (ft_irc): non-blocking TCP sockets with poll() I/O multiplexing, authentication, and channels in C++98.",
+        "3D Graphics Engine (Cub3D): DDA raycasting engine (Wolfenstein 3D) in C with MiniLibX, euclidean projection, and real-time collision detection.",
+        "Zero Memory Leaks: systems code audited strictly with Valgrind (--leak-check=full) under -Wall -Wextra -Werror -pedantic.",
+      ],
+      pt: [
+        "Arquitetura Unix Shell (Minishell): implementação do Bash em C com parsing AST, processos (fork/execve), pipes e sinais POSIX.",
+        "Servidor Concorrente RFC 1459 (ft_irc): sockets TCP não bloqueantes com poll(), autenticação e canais em C++98.",
+        "Motor Gráfico 3D (Cub3D): motor raycasting DDA em C com MiniLibX, projeção euclidiana e detecção de colisão em tempo real.",
+        "Zero vazamentos de memória: projetos auditados estritamente com Valgrind (--leak-check=full) sob flags estritas.",
+      ],
+    },
     tags: ["C", "C++", "Sistemas Unix", "Gestión de Memoria", "Algoritmia", "Peer-to-Peer"],
     link: "https://www.42madrid.com/",
   },

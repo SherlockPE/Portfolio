@@ -1,13 +1,8 @@
 @import "tailwindcss";
 
-/* Configuración para que Tailwind v4 use la clase .dark en lugar de la media query del sistema */
 @variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* ========================================================
-     THEME LIGHT: Variables Semánticas Editables
-     Cambia estos valores para ajustar toda la paleta clara
-     ======================================================== */
   --bg-main: #ffffff;
   --bg-subtle: #f8fafc;
   --bg-card: rgba(255, 255, 255, 0.85);
@@ -34,14 +29,10 @@
   --success-main: #10b981;
   --success-subtle: rgba(16, 185, 129, 0.1);
 
-  --grid-color: rgba(100, 116, 139, 0.08);
+  --grid-color: rgba(71, 85, 105, 0.18);
 }
 
 .dark {
-  /* ========================================================
-     THEME DARK: Variables Semánticas Editables (Estilo Vercel / Linear)
-     Cambia estos valores para ajustar toda la paleta oscura
-     ======================================================== */
   --bg-main: #030712;
   --bg-subtle: #080d1a;
   --bg-card: rgba(15, 23, 42, 0.65);
@@ -114,7 +105,7 @@
   }
 }
 
-/* Transición circular expansiva de tema con View Transitions API */
+/* View Transitions */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -137,7 +128,7 @@
   }
 }
 
-/* Animaciones de scroll con revelación suave una sola vez (ritmo más pausado y elegante) */
+/* Scroll reveal */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(18px);

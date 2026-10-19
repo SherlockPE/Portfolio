@@ -8,6 +8,8 @@ import {
   vottunHackImages,
   hackEsicImages,
   wayraImages,
+  minishellImages,
+  ircServerImages,
 } from "./projectImages";
 
 export * from "./projectImages";
@@ -37,10 +39,79 @@ export interface ProjectItem {
   coverImage?: string;
 }
 
-// TODO: poner links que funcionen, no todos a mi linkedin xd
 export const projectsData: ProjectItem[] = [
-  // --- HACKATHONS Y PRODUCTOS STARTUP ---
-  {id: "hacksat-2026",
+  {id: "minishell-unix",
+    category: "systems",
+    title: {
+      es: "Minishell - Shell Propia Unix",
+      en: "Minishell - Custom Unix Shell",
+      pt: "Minishell - Shell Própria Unix",
+    },
+    badge: {
+      es: "Sistemas Operativos · C & POSIX",
+      en: "Operating Systems · C & POSIX",
+      pt: "Sistemas Operacionais · C & POSIX",
+    },
+    period: "2024",
+    description: {
+      es: "Implementación de una shell propia en C que replica con fidelidad el comportamiento de Bash. Incluye tokenización y parsing sintáctico de comandos, árbol de ejecución de procesos con fork/execve, gestión manual estricta de memoria dinámica (cero memory leaks), soporte de múltiples pipes (|), redirecciones (<, >, >>, <<), variables de entorno ($?, $PATH) y manejo de señales Unix (SIGINT, SIGQUIT).",
+      en: "Full Bash-like Unix shell implementation written in C. Features complete command tokenization and AST parsing, process trees via fork/execve, zero-leak manual memory management, multi-pipe chaining (|), I/O redirection (<, >, >>, <<), environment variable resolution ($?, $PATH), and Unix signal handling (SIGINT, SIGQUIT).",
+      pt: "Implementação de uma shell Unix própria em C replicando o comportamento do Bash. Inclui parsing sintático, gerenciamento de processos (fork/execve), pipes múltiplos, redirecionamento e sinais Unix.",
+    },
+    tags: ["C", "POSIX", "Procesos Unix", "Pipes", "Gestión de Memoria", "Bash"],
+    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
+    images: minishellImages,
+    coverImage: "/minishell/shell_1.jpeg",
+  },
+
+  {id: "ft-irc-server",
+    category: "systems",
+    title: {
+      es: "ft_irc - Servidor IRC Concurrente",
+      en: "ft_irc - Concurrent IRC Server",
+      pt: "ft_irc - Servidor IRC Concorrente",
+    },
+    badge: {
+      es: "Redes & Concurrencia · C++ & RFC 1459",
+      en: "Networking & Concurrency · C++ & RFC 1459",
+      pt: "Redes e Concorrência · C++ & RFC 1459",
+    },
+    period: "2024",
+    description: {
+      es: "Servidor IRC completo en C++ que soporta múltiples clientes y múltiples canales concurrentes bajo el protocolo RFC 1459. Comunicación en tiempo real mediante sockets TCP y multiplexación no bloqueante (select/poll). Incluye autenticación de usuarios, gestión de permisos de operador, canales privados con contraseña, moderación y validación estricta de comandos.",
+      en: "Full-featured IRC server in C++ compliant with RFC 1459 supporting multiple concurrent clients and channels. Real-time communication powered by non-blocking TCP sockets and I/O multiplexing (select/poll). Includes authentication, operator privilege management, password-protected channels, and strict command parsing.",
+      pt: "Servidor IRC em C++ com suporte ao protocolo RFC 1459, múltiplos clientes e canais simultâneos via sockets TCP e multiplexação I/O (poll/select).",
+    },
+    tags: ["C++", "Sockets TCP", "Multiplexación (poll)", "Concurrencia", "RFC 1459", "Redes"],
+    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
+    images: ircServerImages,
+    coverImage: "/irc_server/server_1.jpeg",
+  },
+
+  {id: "cub3d-raycaster",
+    category: "systems",
+    title: {
+      es: "Cub3D - Motor Gráfico Raycasting",
+      en: "Cub3D - Raycasting Graphics Engine",
+      pt: "Cub3D - Motor Gráfico Raycasting",
+    },
+    badge: {
+      es: "Motor Gráfico 3D · C & Raycasting",
+      en: "3D Graphics Engine · C & Raycasting",
+      pt: "Motor Gráfico 3D · C & Raycasting",
+    },
+    period: "2024",
+    description: {
+      es: "Desarrollo de un motor gráfico en C basado en raycasting, inspirado en Wolfenstein 3D, capaz de renderizar entornos en tiempo real. Incluye sistema de texturas en alta definición, movimiento fluido del jugador, soporte para rotación vertical de la cámara (look up / look down), detección de colisiones, parsing de mapas .cub y arquitectura modular en Linux con MiniLibX.",
+      en: "Development of a real-time raycasting graphics engine in C inspired by Wolfenstein 3D. Features HD texture mapping, smooth player physics, vertical camera pitch (look up / look down), .cub map parsing, wall collision detection, and modular architecture using MiniLibX on Linux.",
+      pt: "Desenvolvimento de um motor gráfico em C baseado em raycasting inspirado em Wolfenstein 3D com renderização em tempo real. Inclui texturas HD, física de movimentação, rotação vertical da câmera, colisão e parsing de mapas .cub no Linux.",
+    },
+    tags: ["C", "Raycasting", "MiniLibX", "Matemáticas 3D", "Linux", "Motor Gráfico"],
+    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
+    images: [],
+  },
+
+  {id: "merge-hackathon-2025",
     category: "hackathons",
     title: {
       es: "HackSat 2026 - ASTRALUMEN",
@@ -232,75 +303,5 @@ export const projectsData: ProjectItem[] = [
     link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
     images: medRecordsImages,
     coverImage: "/Med_Records/Lemon_hack_win.jpg",
-  },
-
-  // --- PROYECTOS DE SISTEMAS & 42 MADRID (BAJO NIVEL) ---
-  {id: "cub3d-raycaster",
-    category: "systems",
-    title: {
-      es: "Cub3D - Motor Gráfico Raycasting",
-      en: "Cub3D - Raycasting Graphics Engine",
-      pt: "Cub3D - Motor Gráfico Raycasting",
-    },
-    badge: {
-      es: "42 Madrid · Motor Gráfico en C",
-      en: "42 Madrid · C Graphics Engine",
-      pt: "42 Madrid · Motor Gráfico em C",
-    },
-    period: "2024",
-    description: {
-      es: "Desarrollo de un motor gráfico en C basado en raycasting, inspirado en Wolfenstein 3D, capaz de renderizar entornos en tiempo real. Incluye sistema de texturas en alta definición, movimiento fluido del jugador, soporte para rotación vertical de la cámara (look up / look down), detección de colisiones, parsing de mapas .cub y arquitectura modular en Linux con MiniLibX.",
-      en: "Development of a real-time raycasting graphics engine in C inspired by Wolfenstein 3D. Features HD texture mapping, smooth player physics, vertical camera pitch (look up / look down), .cub map parsing, wall collision detection, and modular architecture using MiniLibX on Linux.",
-      pt: "Desenvolvimento de um motor gráfico em C baseado em raycasting inspirado em Wolfenstein 3D com renderização em tempo real. Inclui texturas HD, física de movimentação, rotação vertical da câmera, colisão e parsing de mapas .cub no Linux.",
-    },
-    tags: ["C", "Raycasting", "MiniLibX", "Matemáticas 3D", "Linux", "Motor Gráfico"],
-    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
-    images: [],
-  },
-
-  {id: "ft-irc-server",
-    category: "systems",
-    title: {
-      es: "ft_irc - Servidor IRC Concurrente",
-      en: "ft_irc - Concurrent IRC Server",
-      pt: "ft_irc - Servidor IRC Concorrente",
-    },
-    badge: {
-      es: "42 Madrid · Redes & Concurrencia en C++",
-      en: "42 Madrid · C++ Concurrency & Networking",
-      pt: "42 Madrid · Redes e Concorrência em C++",
-    },
-    period: "2024",
-    description: {
-      es: "Servidor IRC completo en C++ que soporta múltiples clientes y múltiples canales concurrentes bajo el protocolo RFC 1459. Comunicación en tiempo real mediante sockets TCP y multiplexación no bloqueante (select/poll). Incluye autenticación de usuarios, gestión de permisos de operador, canales privados con contraseña, moderación y validación estricta de comandos.",
-      en: "Full-featured IRC server in C++ compliant with RFC 1459 supporting multiple concurrent clients and channels. Real-time communication powered by non-blocking TCP sockets and I/O multiplexing (select/poll). Includes authentication, operator privilege management, password-protected channels, and strict command parsing.",
-      pt: "Servidor IRC em C++ com suporte ao protocolo RFC 1459, múltiplos clientes e canais simultâneos via sockets TCP e multiplexação I/O (poll/select).",
-    },
-    tags: ["C++", "Sockets TCP", "Multiplexación (poll)", "Concurrencia", "RFC 1459", "Redes"],
-    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
-    images: [],
-  },
-
-  {id: "minishell-unix",
-    category: "systems",
-    title: {
-      es: "Minishell - Shell Propia Unix",
-      en: "Minishell - Custom Unix Shell",
-      pt: "Minishell - Shell Própria Unix",
-    },
-    badge: {
-      es: "42 Madrid · Sistemas Operativos en C",
-      en: "42 Madrid · Unix Systems & POSIX",
-      pt: "42 Madrid · Sistemas Operacionais em C",
-    },
-    period: "2024",
-    description: {
-      es: "Implementación de una shell propia en C que replica con fidelidad el comportamiento de Bash. Incluye tokenización y parsing sintáctico de comandos, árbol de ejecución de procesos con fork/execve, gestión manual estricta de memoria dinámica (cero memory leaks), soporte de múltiples pipes (|), redirecciones (<, >, >>, <<), variables de entorno ($?, $PATH) y manejo de señales Unix (SIGINT, SIGQUIT).",
-      en: "Full Bash-like Unix shell implementation written in C. Features complete command tokenization and AST parsing, process trees via fork/execve, zero-leak manual memory management, multi-pipe chaining (|), I/O redirection (<, >, >>, <<), environment variable resolution ($?, $PATH), and Unix signal handling (SIGINT, SIGQUIT).",
-      pt: "Implementação de uma shell Unix própria em C replicando o comportamento do Bash. Inclui parsing sintático, gerenciamento de processos (fork/execve), pipes múltiplos, redirecionamento e sinais Unix.",
-    },
-    tags: ["C", "POSIX", "Procesos Unix", "Pipes", "Gestión de Memoria", "Bash"],
-    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
-    images: [],
   },
 ];

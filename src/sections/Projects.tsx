@@ -46,14 +46,14 @@ export default function Projects() {
   const nextPhoto = useCallback(() => {
     if (!selectedProject || selectedProject.images.length === 0) return;
     setActivePhotoIdx((prev) => (prev + 1) % selectedProject.images.length);
-  }, [selectedProject]);
+  }, [selectedProject, setActivePhotoIdx]);
 
   const prevPhoto = useCallback(() => {
     if (!selectedProject || selectedProject.images.length === 0) return;
     setActivePhotoIdx((prev) =>
       prev === 0 ? selectedProject.images.length - 1 : prev - 1
     );
-  }, [selectedProject]);
+  }, [selectedProject, setActivePhotoIdx]);
 
   // Manejo de atajos de teclado (Escape, Flechas) y bloqueo del scroll
   useEffect(() => {
@@ -151,7 +151,11 @@ export default function Projects() {
                   {/* Badges superiores: Premio y Año */}
                   <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2">
                     <span className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-white/95 dark:bg-slate-900/95 text-blue-700 dark:text-blue-300 border border-slate-200/80 dark:border-slate-700/80 backdrop-blur-md shadow-xs">
-                      <FiAward className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+                      {project.category === "systems" ? (
+                        <FiTerminal className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+                      ) : (
+                        <FiAward className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
+                      )}
                       <span>{project.badge[language]}</span>
                     </span>
                     <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-black/60 text-slate-200 backdrop-blur-md border border-white/10">
@@ -178,7 +182,7 @@ export default function Projects() {
                       <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                       <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                       <span className="ml-2 text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-                        42_MADRID_CORE
+                        SYSTEMS_CORE
                       </span>
                     </div>
                     <span className="text-xs font-mono px-2 py-0.5 rounded bg-white/10 text-slate-300 border border-white/10">
@@ -236,7 +240,7 @@ export default function Projects() {
                     ) : (
                       <span className="text-xs font-mono text-theme-faint flex items-center gap-1">
                         <FiTerminal className="w-3 h-3 text-theme-accent" />
-                        42 Academic
+                        Systems Architecture
                       </span>
                     )}
 
@@ -259,7 +263,7 @@ export default function Projects() {
         })}
       </div>
 
-      {/* Lightbox / Modal interactivo de imágenes montado en document.body para evitar que se desplace por transformaciones de scroll */}
+      {/* Lightbox */}
       {selectedProject &&
         selectedProject.images.length > 0 &&
         typeof document !== "undefined" &&

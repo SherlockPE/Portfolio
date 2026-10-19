@@ -10,9 +10,7 @@ export default function Home() {
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center px-4 pt-20 pb-16 sm:px-6 sm:pt-24 sm:pb-20 lg:px-8">
       <div className="mx-auto flex max-w-7xl w-full flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
-        {/* COLUMNA IZQUIERDA: Presentación e Identidad */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-2xl z-10">
-          {/* Badge de Disponibilidad en Vivo */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-theme-success/30 bg-theme-success-subtle text-theme-success text-xs font-mono font-medium mb-6 backdrop-blur-xs">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -21,7 +19,6 @@ export default function Home() {
             <span>{t.status}</span>
           </div>
 
-          {/* Foto circular con halo de luz ambiental */}
           <div className="relative mb-6 group">
             <div className="absolute -inset-1.5 rounded-full bg-gradient-to-r from-blue-500/35 via-indigo-500/25 to-blue-600/35 blur-lg opacity-60 group-hover:opacity-95 transition-opacity duration-500" />
             <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full overflow-hidden ring-4 ring-theme-border/70 shadow-2xl border-2 border-theme-bg transition-all duration-300 group-hover:scale-105">
@@ -33,12 +30,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Saludo */}
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-theme-faint mb-1">
             {t.greeting}
           </span>
 
-          {/* Nombre Interactivo: 1 al cargar (Scramble), 3 en hover (Spotlight), 4 al clic (Copiar npx) */}
           <InteractiveName />
 
           <div className="mt-3 flex items-center gap-2 font-mono text-sm sm:text-base text-theme-muted font-semibold">
@@ -50,7 +45,6 @@ export default function Home() {
             {t.description}
           </p>
 
-          {/* Botones de acción */}
           <div className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start items-center">
             <a
               href="#projects"
@@ -67,7 +61,6 @@ export default function Home() {
               <span>{t.contactBtn}</span>
             </a>
 
-            {/* Enlaces directos a perfiles */}
             <div className="flex items-center gap-2 ml-2 pl-4 border-l border-theme-border">
               <a
                 href="https://github.com/SherlockPE"
@@ -92,14 +85,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* COLUMNA DERECHA: Terminal Técnica & Métricas Reales */}
         <div className="w-full max-w-lg lg:max-w-md relative group">
-          {/* Halo ambiental detrás de la terminal */}
           <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-blue-500/20 via-indigo-500/15 to-transparent blur-xl opacity-60 group-hover:opacity-85 transition-opacity duration-500 -z-10" />
 
-          {/* Tarjeta tipo Terminal Unix */}
           <div className="rounded-2xl border border-theme-border bg-theme-card shadow-2xl overflow-hidden backdrop-blur-xl">
-            {/* Barra superior de terminal */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-theme-border-subtle bg-theme-card-header">
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-red-400/80" />
@@ -112,23 +101,29 @@ export default function Home() {
               <div className="w-12" />
             </div>
 
-            {/* Código en ejecución */}
-            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-3 bg-theme-card/90">
+            <div className="p-5 font-mono text-xs sm:text-[13px] leading-relaxed space-y-2.5 bg-theme-card/90">
               <div className="flex items-start gap-2">
                 <span className="text-theme-accent font-extrabold select-none text-sm">$</span>
                 <span className="font-bold text-theme-text tracking-tight">
-                  gcc -Wall -Wextra -Werror main.c -o portfolio
+                  make -s CFLAGS="-Wall -Wextra -Werror -pedantic -O2"
                 </span>
+              </div>
+              <div className="flex items-center gap-2 text-[11px] text-theme-muted pl-4">
+                <span className="text-emerald-500 font-bold select-none">[OK]</span>
+                <span>libdependencies.a &amp; portfolio ELF 64-bit compiled (0 warnings)</span>
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-theme-accent font-extrabold select-none text-sm">$</span>
                 <span className="font-bold text-theme-text tracking-tight">
-                  ./portfolio --profile
+                  valgrind --leak-check=full ./portfolio
                 </span>
                 <span className="inline-block w-2 h-4 bg-theme-text animate-pulse" />
               </div>
+              <div className="rounded-lg bg-slate-950/70 dark:bg-black/60 p-2.5 text-[11px] font-mono text-emerald-400 border border-emerald-500/25 space-y-0.5">
+                <p>All heap blocks were freed -- no leaks are possible</p>
+                <p className="text-slate-400">ERROR SUMMARY: 0 errors from 0 contexts</p>
+              </div>
 
-              {/* Salida formateada con foto y datos reales */}
               <div className="pt-2 border-t border-theme-border-subtle">
                 <div className="flex items-center gap-4 mb-4">
                   <img
@@ -149,7 +144,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Métricas reales destacadas */}
                 <div className="grid grid-cols-2 gap-2 pt-2 text-center">
                   <div className="p-2.5 rounded-lg bg-theme-bg/80 border border-theme-border-subtle hover:border-theme-border-glow transition-colors">
                     <span className="block font-bold text-base text-theme-accent font-mono">

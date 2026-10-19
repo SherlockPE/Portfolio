@@ -96,3 +96,16 @@ export const psapioImages: string[] = [
   "/psapio_pictures/foto_psapio3.jpg",
 ];
 
+export const minishellImages: string[] = [
+  "/minishell/shell_1.jpeg",
+  "/minishell/shell_2.jpeg",
+];
+
+export const ircServerImages: string[] = [
+  "/irc_server/server_1.jpeg",
+  "/irc_server/server_2.jpeg",
+  "/irc_server/server_3.jpeg",
+  "/irc_server/server_4.jpeg",
+  "/irc_server/server_5.jpeg",
+];
+
