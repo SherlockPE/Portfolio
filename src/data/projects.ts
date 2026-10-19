@@ -45,7 +45,7 @@ export interface ProjectItem {
 export const projectsData: ProjectItem[] = [
   {
     id: "framashare",
-    category: "systems",
+    category: "hackathons",
     title: {
       es: "FramaShare — Plataforma Segura para Compartir Documentos",
       en: "FramaShare — Privacy-First Document & Media Sharing Platform",

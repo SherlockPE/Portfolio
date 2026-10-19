@@ -26,13 +26,13 @@ Portfolio personal de **Fabricio López Reyes**, graduado de **42 Madrid** y des
 cd Portfolio
 
 # Instalar dependencias
-npm install
+pnpm install
 
 # Servidor de desarrollo
-npm run dev
+pnpm dev
 
 # Compilar para producción
-npm run build
+pnpm build
 ```
 
 ## 👤 Contacto

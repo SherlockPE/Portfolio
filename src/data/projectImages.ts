@@ -70,8 +70,6 @@ export const medRecordsImages: string[] = [
 
 export const vottunHackImages: string[] = [
   "/Vottun_hack/vottun_first_hack.webp",
-  "/Vottun_hack/HAck_1votttun_3.jpg",
-  "/Vottun_hack/HAck_1_vottun_4.jpg",
 ];
 
 export const hackEsicImages: string[] = [
