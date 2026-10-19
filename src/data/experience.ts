@@ -158,37 +158,37 @@ export const experienceData: ExperienceItem[] = [
     link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
   },
 
-  {id: "picardias-eventos",
-    company: "Picardías Eventos Empresariales",
-    role: {
-      es: "Recreador de Eventos Infantiles (Comunicación & Expresión)",
-      en: "Event Facilitator & Host (Communication & Stage Presence)",
-      pt: "Recreador de Eventos Infantis (Comunicação e Oratória)",
-    },
-    period: "oct. 2022 - dic. 2022",
-    location: "Perú · Presencial",
-    description: {
-      es: "Dinamización de grupos y audiencias infantiles en eventos de alta concurrencia, fortaleciendo habilidades de oratoria, improvisación y liderazgo en vivo.",
-      en: "Live stage facilitation and crowd engagement for children events, developing active listening, public speaking, and rapid problem-solving skills.",
-      pt: "Dinamização de grupos em eventos infantis, aprimorando oratória, escuta ativa e liderança interpessoal.",
-    },
-    details: {
-      es: [
-        "Liderazgo de grupos y coordinación de actividades lúdicas con comunicación clara y asertiva.",
-        "Resolución ágil de imprevistos ante público y gestión de la energía escénica.",
-      ],
-      en: [
-        "Group leadership and coordination of engaging activities with clear, dynamic communication.",
-        "Rapid conflict resolution and active stage management under fast-paced live conditions.",
-      ],
-      pt: [
-        "Coordenação de dinâmicas coletivas com comunicação assertiva e dinâmica.",
-        "Resolução rápida de imprevistos e controle de palco em tempo real.",
-      ],
-    },
-    tags: ["Oratoria", "Liderazgo de Grupos", "Comunicación", "Soft Skills"],
-    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
-  },
+  // {id: "picardias-eventos",
+  //   company: "Picardías Eventos Empresariales",
+  //   role: {
+  //     es: "Recreador de Eventos Infantiles (Comunicación & Expresión)",
+  //     en: "Event Facilitator & Host (Communication & Stage Presence)",
+  //     pt: "Recreador de Eventos Infantis (Comunicação e Oratória)",
+  //   },
+  //   period: "oct. 2022 - dic. 2022",
+  //   location: "Perú · Presencial",
+  //   description: {
+  //     es: "Dinamización de grupos y audiencias infantiles en eventos de alta concurrencia, fortaleciendo habilidades de oratoria, improvisación y liderazgo en vivo.",
+  //     en: "Live stage facilitation and crowd engagement for children events, developing active listening, public speaking, and rapid problem-solving skills.",
+  //     pt: "Dinamização de grupos em eventos infantis, aprimorando oratória, escuta ativa e liderança interpessoal.",
+  //   },
+  //   details: {
+  //     es: [
+  //       "Liderazgo de grupos y coordinación de actividades lúdicas con comunicación clara y asertiva.",
+  //       "Resolución ágil de imprevistos ante público y gestión de la energía escénica.",
+  //     ],
+  //     en: [
+  //       "Group leadership and coordination of engaging activities with clear, dynamic communication.",
+  //       "Rapid conflict resolution and active stage management under fast-paced live conditions.",
+  //     ],
+  //     pt: [
+  //       "Coordenação de dinâmicas coletivas com comunicação assertiva e dinâmica.",
+  //       "Resolução rápida de imprevistos e controle de palco em tempo real.",
+  //     ],
+  //   },
+  //   tags: ["Oratoria", "Liderazgo de Grupos", "Comunicación", "Soft Skills"],
+  //   link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
+  // },
   
 ];
 

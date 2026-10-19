@@ -23,6 +23,9 @@ export default function InteractiveName() {
 
   // 1. Efecto Desencriptación Hacker (Text Scramble) al cargar la página
   const runScramble = useCallback(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
     let iteration = 0;
     const maxIterations = 38;
 
