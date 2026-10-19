@@ -94,6 +94,14 @@ export default function Projects() {
         subtitle={t.subtitle}
       />
 
+      {/* Nota de uso al inicio de la sección */}
+      <div className="mb-6 -mt-4 flex items-center justify-center text-xs font-mono text-theme-faint px-2 text-center">
+        <p className="flex items-center gap-1.5">
+          <FiInfo className="w-3.5 h-3.5 text-theme-accent shrink-0" />
+          <span>{t.clickCardHint}</span>
+        </p>
+      </div>
+
       {/* Selector de Filtros / Categorías */}
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
         <button
@@ -333,14 +341,6 @@ export default function Projects() {
             </div>
           );
         })}
-      </div>
-
-      {/* Mensaje de ayuda / UX helper idéntico al de Skills */}
-      <div className="mt-8 flex items-center justify-between text-xs font-mono text-theme-faint px-2">
-        <p className="flex items-center gap-1.5">
-          <FiInfo className="w-3.5 h-3.5 text-theme-accent shrink-0" />
-          <span>{t.clickCardHint}</span>
-        </p>
       </div>
 
       {/* Lightbox */}

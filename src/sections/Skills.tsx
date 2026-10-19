@@ -199,6 +199,23 @@ export default function Skills() {
         </div>
       </div>
 
+      {/* Nota sutil de interfaz al inicio de la sección */}
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-theme-faint px-1">
+        <p className="flex items-center gap-1.5">
+          <FiInfo className="w-3.5 h-3.5 text-theme-accent shrink-0" />
+          <span>
+            {language === "es"
+              ? "En ordenador pasa el cursor sobre cada tarjeta para desplegar las tarjetas de detalle hacia arriba. En móvil pulsa para abrir el visor centrado."
+              : language === "pt"
+                ? "No computador, passe o cursor sobre o cartão para ver os detalhes acima. No celular, toque para abrir o modal."
+                : "On desktop hover over cards to float detail cards upward. On mobile tap to open the centered modal."}
+          </span>
+        </p>
+        <p className="hidden sm:block shrink-0 text-theme-muted">
+          {filteredSkills.length} {language === "es" ? "tecnologías mostradas" : language === "pt" ? "tecnologias exibidas" : "technologies shown"}
+        </p>
+      </div>
+
       {/* Filtros por Categoría (Con suficiente margen para las tarjetas flotantes en hover) */}
       <div className="mb-14 sm:mb-16 flex flex-wrap items-center gap-2">
         {categories.map((cat) => (
@@ -216,7 +233,6 @@ export default function Skills() {
           </button>
         ))}
       </div>
-
       {/* Grid de Tecnologías: Tarjeta frontal limpia + Tarjetitas flotantes que suben en hover (Desktop) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
         {filteredSkills.map((skill) => {
@@ -362,22 +378,6 @@ export default function Skills() {
           document.body
         )}
 
-      {/* Nota sutil de interfaz */}
-      <div className="mt-8 flex items-center justify-between text-xs font-mono text-theme-faint px-2">
-        <p className="flex items-center gap-1.5">
-          <FiInfo className="w-3.5 h-3.5 text-theme-accent shrink-0" />
-          <span>
-            {language === "es"
-              ? "En ordenador pasa el cursor sobre cada tarjeta para desplegar las tarjetas de detalle hacia arriba. En móvil pulsa para abrir el visor centrado."
-              : language === "pt"
-                ? "No computador, passe o cursor sobre o cartão para ver os detalhes acima. No celular, toque para abrir o modal."
-                : "On desktop hover over cards to float detail cards upward. On mobile tap to open the centered modal."}
-          </span>
-        </p>
-        <p className="hidden sm:block">
-          {filteredSkills.length} {language === "es" ? "tecnologías mostradas" : language === "pt" ? "tecnologias exibidas" : "technologies shown"}
-        </p>
-      </div>
     </div>
   );
 }
