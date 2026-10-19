@@ -15,7 +15,15 @@ import {
   FiTerminal,
   FiCode,
   FiInfo,
+  FiPlay,
+  FiVideo,
 } from "react-icons/fi";
+
+function getYouTubeVideoId(url?: string | null): string | null {
+  if (!url) return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  return match ? match[1] : null;
+}
 
 export default function Projects() {
   const { language } = useApp();
@@ -91,7 +99,7 @@ export default function Projects() {
           className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
             selectedCategory === "all"
               ? "bg-theme-accent text-white shadow-md shadow-blue-500/25 ring-2 ring-theme-accent/50"
-              : "bg-theme-card text-theme-secondary hover:bg-theme-card-hover border border-theme-border"
+              : "bg-white dark:bg-theme-card text-slate-700 dark:text-theme-secondary hover:bg-slate-100 dark:hover:bg-theme-card-hover border border-slate-300 dark:border-theme-border shadow-xs"
           }`}
         >
           {t.filterAll} ({projectsData.length})
@@ -103,7 +111,7 @@ export default function Projects() {
           className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
             selectedCategory === "systems"
               ? "bg-theme-accent text-white shadow-md shadow-blue-500/25 ring-2 ring-theme-accent/50"
-              : "bg-theme-card text-theme-secondary hover:bg-theme-card-hover border border-theme-border"
+              : "bg-white dark:bg-theme-card text-slate-700 dark:text-theme-secondary hover:bg-slate-100 dark:hover:bg-theme-card-hover border border-slate-300 dark:border-theme-border shadow-xs"
           }`}
         >
           {t.filterSystems} ({projectsData.filter((p) => p.category === "systems").length})
@@ -115,7 +123,7 @@ export default function Projects() {
           className={`px-4 py-2 text-xs font-mono font-semibold rounded-full transition-all cursor-pointer ${
             selectedCategory === "hackathons"
               ? "bg-theme-accent text-white shadow-md shadow-blue-500/25 ring-2 ring-theme-accent/50"
-              : "bg-theme-card text-theme-secondary hover:bg-theme-card-hover border border-theme-border"
+              : "bg-white dark:bg-theme-card text-slate-700 dark:text-theme-secondary hover:bg-slate-100 dark:hover:bg-theme-card-hover border border-slate-300 dark:border-theme-border shadow-xs"
           }`}
         >
           {t.filterHackathons} ({projectsData.filter((p) => p.category === "hackathons").length})
@@ -126,7 +134,11 @@ export default function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {filteredProjects.map((project) => {
           const hasImages = project.images && project.images.length > 0;
+          const hasVideos = project.images && project.images.some((img) => getYouTubeVideoId(img) !== null);
+          const isOnlyGif = !hasVideos && project.images && project.images.length === 1 && project.images[0].toLowerCase().endsWith(".gif");
           const coverImg = project.coverImage || (hasImages ? project.images[0] : null);
+          const coverVideoId = getYouTubeVideoId(coverImg) || (hasVideos ? getYouTubeVideoId(project.images[0]) : null);
+          const resolvedCoverSrc = coverVideoId ? `https://img.youtube.com/vi/${coverVideoId}/hqdefault.jpg` : coverImg;
 
           return (
             <div
@@ -145,24 +157,33 @@ export default function Projects() {
                   openGallery(project, 0);
                 }
               }}
-              className={`flex flex-col overflow-hidden rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover shadow-xs transition-all hover:border-theme-border-glow hover:shadow-xl backdrop-blur-xs group ${
+              className={`flex flex-col overflow-hidden rounded-2xl border border-slate-300/90 dark:border-theme-border/70 bg-white dark:bg-theme-card hover:bg-slate-50/90 dark:hover:bg-theme-card-hover shadow-md shadow-slate-200/90 dark:shadow-none hover:shadow-2xl hover:shadow-blue-500/15 hover:border-theme-accent/60 dark:hover:border-theme-border-glow transition-all duration-300 hover:-translate-y-1.5 backdrop-blur-xs group ${
                 hasImages ? "cursor-pointer" : ""
               }`}
             >
               {/* Portada / Imagen o Header de Terminal para proyectos de bajo nivel */}
-              {coverImg ? (
+              {resolvedCoverSrc ? (
                 <div
                   className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 select-none"
-                  title={hasImages ? `${t.viewGallery} (${project.images.length} ${t.photosCount})` : undefined}
+                  title={hasImages ? (hasVideos ? `Ver Videos (${project.images.length})` : isOnlyGif ? t.viewDemoGif : `${t.viewGallery} (${project.images.length} ${t.photosCount})`) : undefined}
                 >
                   <img
-                    src={coverImg}
+                    src={resolvedCoverSrc}
                     alt={project.title[language]}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                   {/* Gradiente sutil para legibilidad de badges */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-slate-950/40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-slate-950/45" />
+
+                  {/* Icono de Play grande si es video */}
+                  {hasVideos && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-13 h-13 rounded-full bg-red-600/95 text-white flex items-center justify-center shadow-2xl group-hover:scale-115 group-hover:bg-red-600 transition-all duration-300">
+                        <FiPlay className="w-6 h-6 ml-0.5 fill-current" />
+                      </div>
+                    </div>
+                  )}
 
                   {/* Badges superiores: Premio y Año */}
                   <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2">
@@ -179,13 +200,29 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  {/* Contador de fotos inferior con icono de cámara */}
+                  {/* Contador de fotos o videos inferior */}
                   {project.images.length > 0 && (
-                    <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-md bg-black/75 text-white backdrop-blur-md border border-white/15 group-hover:bg-theme-accent group-hover:border-theme-accent/50 transition-colors shadow-sm">
-                      <FiCamera className="w-3.5 h-3.5 text-blue-400 group-hover:text-white" />
-                      <span>
-                        {project.images.length} {t.photosCount}
-                      </span>
+                    <div className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-md bg-black/80 text-white backdrop-blur-md border border-white/15 group-hover:bg-theme-accent group-hover:border-theme-accent/50 transition-colors shadow-sm">
+                      {hasVideos ? (
+                        <>
+                          <FiPlay className="w-3.5 h-3.5 text-red-400 group-hover:text-white fill-current" />
+                          <span>
+                            {project.images.length} {project.images.length === 1 ? "Video Demo" : "Videos Demo"}
+                          </span>
+                        </>
+                      ) : isOnlyGif ? (
+                        <>
+                          <FiPlay className="w-3.5 h-3.5 text-blue-400 group-hover:text-white fill-current" />
+                          <span>{t.demoGif}</span>
+                        </>
+                      ) : (
+                        <>
+                          <FiCamera className="w-3.5 h-3.5 text-blue-400 group-hover:text-white" />
+                          <span>
+                            {project.images.length} {t.photosCount}
+                          </span>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>
@@ -220,36 +257,50 @@ export default function Projects() {
               {/* Contenido de la tarjeta */}
               <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
                 <div>
-                  <h3 className="text-lg font-bold text-theme-text mb-3 group-hover:text-theme-accent transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-theme-text mb-3 group-hover:text-theme-accent transition-colors">
                     {project.title[language]}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-theme-muted leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-theme-muted leading-relaxed mb-6">
                     {project.description[language]}
                   </p>
                 </div>
 
                 <div>
                   {/* Etiquetas técnicas en monospace */}
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-theme-border-subtle mb-4">
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-200 dark:border-theme-border-subtle mb-4">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-theme-bg/80 text-theme-secondary border border-theme-border-subtle"
+                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-theme-bg/80 text-slate-700 dark:text-theme-secondary border border-slate-200/90 dark:border-theme-border-subtle"
                       >
                         #{tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* Acciones: Ver Galería y Ver Enlace */}
+                  {/* Acciones: Ver Galería / Videos y Ver Enlace */}
                   <div className="flex items-center justify-between gap-3 pt-1">
                     {hasImages ? (
-                      <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-theme-secondary group-hover:text-theme-accent transition-colors">
-                        <FiImage className="w-3.5 h-3.5" />
-                        <span>
-                          {t.viewGallery} ({project.images.length})
-                        </span>
+                      <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-700 dark:text-theme-secondary group-hover:text-theme-accent transition-colors">
+                        {hasVideos ? (
+                          <>
+                            <FiVideo className="w-3.5 h-3.5 text-red-500" />
+                            <span>Ver Demos ({project.images.length})</span>
+                          </>
+                        ) : isOnlyGif ? (
+                          <>
+                            <FiPlay className="w-3.5 h-3.5 text-theme-accent fill-current" />
+                            <span>{t.viewDemoGif}</span>
+                          </>
+                        ) : (
+                          <>
+                            <FiImage className="w-3.5 h-3.5 text-theme-accent" />
+                            <span>
+                              {t.viewGallery} ({project.images.length})
+                            </span>
+                          </>
+                        )}
                       </span>
                     ) : (
                       <span className="text-xs font-mono text-theme-faint flex items-center gap-1">
@@ -303,7 +354,7 @@ export default function Projects() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                <span className="text-sm sm:base font-bold text-white font-mono">
+                <span className="text-sm sm:text-base font-bold text-white font-mono">
                   {selectedProject.title[language]}
                 </span>
                 <span className="text-xs font-mono text-blue-400">
@@ -339,14 +390,35 @@ export default function Projects() {
                 </button>
               )}
 
-              {/* Imagen activa */}
-              <div className="relative max-h-full max-w-full flex items-center justify-center">
-                <img
-                  src={selectedProject.images[activePhotoIdx]}
-                  alt={`${selectedProject.title[language]} - ${activePhotoIdx + 1}`}
-                  className="max-h-[68vh] sm:max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-2xl border border-white/10 select-none"
-                />
-              </div>
+              {/* Contenido activo: Video de YouTube o Imagen */}
+              {(() => {
+                const activeMedia = selectedProject.images[activePhotoIdx];
+                const activeVideoId = getYouTubeVideoId(activeMedia);
+
+                if (activeVideoId) {
+                  return (
+                    <div className="relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/20 bg-black">
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${activeVideoId}?autoplay=1&rel=0`}
+                        title={`${selectedProject.title[language]} - Demo Video ${activePhotoIdx + 1}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full border-0"
+                      />
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="relative max-h-full max-w-full flex items-center justify-center">
+                    <img
+                      src={activeMedia}
+                      alt={`${selectedProject.title[language]} - ${activePhotoIdx + 1}`}
+                      className="max-h-[68vh] sm:max-h-[72vh] w-auto max-w-full object-contain rounded-lg shadow-2xl border border-white/10 select-none"
+                    />
+                  </div>
+                );
+              })()}
 
               {/* Botón Siguiente */}
               {selectedProject.images.length > 1 && (
@@ -367,24 +439,36 @@ export default function Projects() {
                 className="w-full max-w-4xl mx-auto pt-3 border-t border-white/10 flex items-center justify-center gap-2 overflow-x-auto py-2 shrink-0 select-none"
                 onClick={(e) => e.stopPropagation()}
               >
-                {selectedProject.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setActivePhotoIdx(idx)}
-                    className={`relative h-12 w-16 sm:h-14 sm:w-20 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                      activePhotoIdx === idx
-                        ? "border-blue-500 scale-105 shadow-md shadow-blue-500/50"
-                        : "border-transparent opacity-50 hover:opacity-100"
-                    }`}
-                  >
-                    <img
-                      src={img}
-                      alt={`Thumbnail ${idx + 1}`}
-                      className="h-full w-full object-cover"
-                    />
-                  </button>
-                ))}
+                {selectedProject.images.map((img, idx) => {
+                  const videoId = getYouTubeVideoId(img);
+                  const thumbSrc = videoId
+                    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+                    : img;
+
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActivePhotoIdx(idx)}
+                      className={`relative h-12 w-16 sm:h-14 sm:w-20 rounded-md overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
+                        activePhotoIdx === idx
+                          ? "border-blue-500 scale-105 shadow-md shadow-blue-500/50"
+                          : "border-transparent opacity-50 hover:opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={thumbSrc}
+                        alt={`Thumbnail ${idx + 1}`}
+                        className="h-full w-full object-cover"
+                      />
+                      {videoId && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                          <FiPlay className="w-4 h-4 text-white fill-current drop-shadow" />
+                        </div>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>,

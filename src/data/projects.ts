@@ -1,4 +1,5 @@
 import {
+  framashareImages,
   hackSatImages,
   mergeHackImages,
   summerHackImages,
@@ -10,6 +11,8 @@ import {
   wayraImages,
   minishellImages,
   ircServerImages,
+  philosophersImages,
+  cub3dImages,
 } from "./projectImages";
 
 export * from "./projectImages";
@@ -40,6 +43,41 @@ export interface ProjectItem {
 }
 
 export const projectsData: ProjectItem[] = [
+  {
+    id: "framashare",
+    category: "systems",
+    title: {
+      es: "FramaShare — Plataforma Segura para Compartir Documentos",
+      en: "FramaShare — Privacy-First Document & Media Sharing Platform",
+      pt: "FramaShare — Plataforma Privada para Compartilhamento de Documentos",
+    },
+    badge: {
+      es: "Fullstack & Privacidad · Vue 3, Fastify & PostgreSQL",
+      en: "Fullstack & Privacy · Vue 3, Fastify & PostgreSQL",
+      pt: "Fullstack & Privacidade · Vue 3, Fastify & PostgreSQL",
+    },
+    period: "2025",
+    description: {
+      es: "Ecosistema self-hosted de código abierto para la publicación y compartición segura de documentos PDF, libros EPUB y álbumes fotográficos con foco radical en la privacidad. Arquitectura monorepo en pnpm con cliente reactivo en Vue 3 y backend de alto rendimiento en Fastify con TypeScript y PostgreSQL (Prisma ORM). Implementa streaming por rangos HTTP 206 para carga instantánea de archivos pesados, enlaces con caducidad automática, contraseñas hasheadas, límite de lectores concurrentes (maxSessions), revocación inmediata ('kill switch'), bloqueo de descargas locales y recolección de basura con reintentos para purga segura en disco.",
+      en: "Modern, self-hosted, privacy-respecting publication and file-sharing platform for PDFs, EPUB books, and high-resolution photo albums. Built as a pnpm monorepo featuring a reactive Vue 3 client and a high-performance Fastify backend with TypeScript and PostgreSQL (Prisma ORM). Features HTTP 206 byte-range streaming for instant loading of large documents, auto-expiring anonymous uploads, hashed link passwords, concurrent session caps (maxSessions), instant access revocation ('kill switch'), download restriction toggles, and robust background garbage collection with disk cleanup retry loops.",
+      pt: "Ecossistema moderno e auto-hospedado (self-hosted) para publicação e compartilhamento seguro de documentos PDF, livros EPUB e álbuns de fotos com foco total em privacidade. Construído como monorepo pnpm com cliente reativo em Vue 3 e backend de alta performance em Fastify com TypeScript e PostgreSQL (Prisma ORM). Inclui streaming via HTTP 206 (byte-range) para carregamento instantâneo de arquivos grandes, links com expiração automática e senha, limite de leitores simultâneos (maxSessions), bloqueio de download, revogação instantânea e rotina de limpeza de disco com retry loop.",
+    },
+    tags: [
+      "Vue.js 3",
+      "Fastify",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Docker Compose",
+      "HTTP 206 Streaming",
+      "pnpm Monorepo",
+      "Seguridad & Privacidad",
+    ],
+    link: "https://github.com/sherlockpe/framashare",
+    images: framashareImages,
+    coverImage: "/framashare/demostracion.gif",
+  },
+
   {id: "minishell-unix",
     category: "systems",
     title: {
@@ -108,10 +146,7 @@ export const projectsData: ProjectItem[] = [
     },
     tags: ["C", "Raycasting", "MiniLibX", "Matemáticas 3D", "Linux", "Motor Gráfico"],
     link: "https://github.com/SherlockPE/Cube-3D",
-    images: [
-      "https://youtu.be/oINDRLNVWC0",
-      "https://youtu.be/Uo-BsljttwI",
-    ],
+    images: cub3dImages,
     coverImage: "https://img.youtube.com/vi/oINDRLNVWC0/hqdefault.jpg",
   },
 
@@ -135,8 +170,9 @@ export const projectsData: ProjectItem[] = [
       pt: "O clássico problema de sincronização de Edsger Dijkstra em sistemas operacionais: simulação concorrente em C usando threads POSIX (pthreads) e mutexes. Focado em evitar deadlocks, condições de corrida e starvation sem sobrecarregar a CPU, com precisão de milissegundos e auditoria estrita com ThreadSanitizer.",
     },
     tags: ["C", "Pthreads", "Mutexes", "Concurrencia", "Sistemas Operativos", "Race Conditions", "ThreadSanitizer"],
-    link: "https://www.linkedin.com/in/fabricio-l%C3%B3pez-reyes/",
-    images: [],
+    link: "",
+    images: philosophersImages,
+    coverImage: "/philosophers/philo_1.png",
   },
 
   {

@@ -220,16 +220,18 @@ export default function Skills() {
             <div
               key={skill.id}
               onClick={() => setActiveModalSkill(skill)}
-              className={`group relative rounded-2xl bg-theme-card border transition-all duration-300 p-4 sm:p-4.5 flex items-center justify-between cursor-pointer select-none ${
+              className={`group relative rounded-2xl bg-white dark:bg-theme-card border transition-all duration-300 p-4 sm:p-4.5 flex items-center justify-between cursor-pointer select-none shadow-sm shadow-slate-200/80 dark:shadow-none hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 ${
                 skill.highlight
-                  ? "border-theme-accent/40 hover:border-theme-accent hover:shadow-lg hover:shadow-blue-500/10"
-                  : "border-theme-border/80 hover:border-theme-border-glow hover:bg-theme-card-hover hover:shadow-md"
+                  ? "border-blue-400/60 dark:border-theme-accent/40 hover:border-theme-accent"
+                  : "border-slate-300/90 dark:border-theme-border/80 hover:border-theme-accent/60 dark:hover:border-theme-border-glow hover:bg-slate-50/80 dark:hover:bg-theme-card-hover"
               }`}
             >
               {/* Tarjeta Frontal Principal: Solo se ve Icono, Nombre y Subtítulo/Badge */}
               <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                <div className="w-11 h-11 rounded-xl bg-theme-bg border border-theme-border-subtle flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
-                  {getSkillIcon(skill.icon)}
+                <div className="w-11 h-11 rounded-xl bg-slate-100 dark:bg-theme-bg border border-slate-200 dark:border-theme-border-subtle flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-110 group-hover:bg-blue-500/10 group-hover:border-theme-accent/50 group-hover:shadow-md group-hover:shadow-blue-500/15 transition-all duration-300">
+                  <div className="transition-transform duration-300 group-hover:animate-icon-pop flex items-center justify-center">
+                    {getSkillIcon(skill.icon)}
+                  </div>
                 </div>
 
                 <div className="flex flex-col min-w-0 pr-1">

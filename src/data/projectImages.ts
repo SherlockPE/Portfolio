@@ -70,6 +70,8 @@ export const medRecordsImages: string[] = [
 
 export const vottunHackImages: string[] = [
   "/Vottun_hack/vottun_first_hack.webp",
+  "/Vottun_hack/HAck_1votttun_3.jpg",
+  "/Vottun_hack/HAck_1_vottun_4.jpg",
 ];
 
 export const hackEsicImages: string[] = [
@@ -108,4 +110,19 @@ export const ircServerImages: string[] = [
   "/irc_server/server_4.jpeg",
   "/irc_server/server_5.jpeg",
 ];
+
+export const philosophersImages: string[] = [
+  "/philosophers/philo_1.png",
+  "/philosophers/philo_2.png",
+];
+
+export const cub3dImages: string[] = [
+  "https://youtu.be/oINDRLNVWC0",
+  "https://youtu.be/Uo-BsljttwI",
+];
+
+export const framashareImages: string[] = [
+  "/framashare/demostracion.gif",
+];
+
 
