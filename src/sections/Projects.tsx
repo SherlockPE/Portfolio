@@ -138,7 +138,7 @@ export default function Projects() {
         {filteredProjects.map((project) => {
           const hasImages = project.images && project.images.length > 0;
           const hasVideos = project.images && project.images.some((img) => getYouTubeVideoId(img) !== null);
-          const isOnlyGif = !hasVideos && project.images && project.images.length === 1 && project.images[0].toLowerCase().endsWith(".gif");
+          const hasGifs = !hasVideos && project.images && project.images.some((img) => img.toLowerCase().endsWith(".gif"));
           const coverImg = project.coverImage || (hasImages ? project.images[0] : null);
           const coverVideoId = getYouTubeVideoId(coverImg) || (hasVideos ? getYouTubeVideoId(project.images[0]) : null);
           const resolvedCoverSrc = coverVideoId ? `https://img.youtube.com/vi/${coverVideoId}/hqdefault.jpg` : coverImg;
@@ -168,7 +168,7 @@ export default function Projects() {
               {resolvedCoverSrc ? (
                 <div
                   className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 select-none"
-                  title={hasImages ? (hasVideos ? `Ver Videos (${project.images.length})` : isOnlyGif ? t.viewDemoGif : `${t.viewGallery} (${project.images.length} ${t.photosCount})`) : undefined}
+                  title={hasImages ? (hasVideos ? `Ver Videos (${project.images.length})` : hasGifs ? (project.images.length === 1 ? t.viewDemoGif : `Demos GIF (${project.images.length})`) : `${t.viewGallery} (${project.images.length} ${t.photosCount})`) : undefined}
                 >
                   <img
                     src={resolvedCoverSrc}
@@ -216,10 +216,10 @@ export default function Projects() {
                             {project.images.length} {project.images.length === 1 ? "Video Demo" : "Videos Demo"}
                           </span>
                         </>
-                      ) : isOnlyGif ? (
+                      ) : hasGifs ? (
                         <>
                           <FiPlay className="w-3.5 h-3.5 text-blue-400 group-hover:text-white fill-current" />
-                          <span>{t.demoGif}</span>
+                          <span>{project.images.length === 1 ? t.demoGif : `${project.images.length} Demos GIF`}</span>
                         </>
                       ) : (
                         <>
@@ -294,10 +294,10 @@ export default function Projects() {
                             <FiVideo className="w-3.5 h-3.5 text-red-500" />
                             <span>Ver Demos ({project.images.length})</span>
                           </>
-                        ) : isOnlyGif ? (
+                        ) : hasGifs ? (
                           <>
                             <FiPlay className="w-3.5 h-3.5 text-theme-accent fill-current" />
-                            <span>{t.viewDemoGif}</span>
+                            <span>{project.images.length === 1 ? t.viewDemoGif : `Ver Demos GIF (${project.images.length})`}</span>
                           </>
                         ) : (
                           <>

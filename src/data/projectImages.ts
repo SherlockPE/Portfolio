@@ -117,8 +117,8 @@ export const philosophersImages: string[] = [
 ];
 
 export const cub3dImages: string[] = [
-  "https://youtu.be/oINDRLNVWC0",
-  "https://youtu.be/Uo-BsljttwI",
+  "/cub3d/cub3d_demo1.gif",
+  "/cub3d/cub3d_demo2.gif",
 ];
 
 export const framashareImages: string[] = [

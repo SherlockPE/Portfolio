@@ -147,7 +147,7 @@ export const projectsData: ProjectItem[] = [
     tags: ["C", "Raycasting", "MiniLibX", "Matemáticas 3D", "Linux", "Motor Gráfico"],
     link: "https://github.com/SherlockPE/Cube-3D",
     images: cub3dImages,
-    coverImage: "https://img.youtube.com/vi/oINDRLNVWC0/hqdefault.jpg",
+    coverImage: "/cub3d/cub3d_demo2.gif",
   },
 
   {
