@@ -22,13 +22,17 @@ export default function About() {
         subtitle={t.subtitle}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* Bloque superior: Descripción a la izquierda, Base Metodológica y Áreas de Interés a la derecha */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <div className="lg:col-span-5 space-y-6">
           <p className="text-base sm:text-lg leading-relaxed text-theme-secondary">
             {t.description}
           </p>
+        </div>
 
-          <div className="p-5 rounded-2xl border border-theme-border bg-theme-card/90 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs text-theme-muted">
+        <div className="lg:col-span-7 space-y-6">
+          {/* Base Metodológica */}
+          <div className="p-6 rounded-2xl border border-theme-border bg-theme-card/90 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs text-theme-muted">
             <div className="flex items-center justify-between text-theme-muted border-b border-theme-border-subtle pb-2">
               <span className="font-bold text-theme-text uppercase tracking-wider">
                 {t.methodologyTitle}
@@ -37,7 +41,7 @@ export default function About() {
                 {t.methodologyBadge}
               </span>
             </div>
-            <div className="space-y-2 text-theme-secondary">
+            <div className="space-y-2.5 text-theme-secondary">
               {t.methodologyPoints.map((point: string, idx: number) => (
                 <p key={idx} className="flex items-start gap-2">
                   <span className="text-theme-accent font-bold select-none shrink-0">•</span>
@@ -47,8 +51,8 @@ export default function About() {
             </div>
           </div>
 
-          {/* Áreas de Interés & Exploración Técnica (Incluye Ada / SPARK) */}
-          <div className="p-5 rounded-2xl border border-theme-border/80 bg-theme-card/80 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs">
+          {/* Áreas de Interés & Exploración Técnica */}
+          <div className="p-5 sm:p-6 rounded-2xl border border-theme-border/80 bg-theme-card/80 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs">
             <div className="flex items-center gap-2 text-theme-muted border-b border-theme-border-subtle pb-2">
               <FiCompass className="w-4 h-4 text-theme-accent" />
               <span className="font-bold text-theme-text uppercase tracking-wider text-[11px]">
@@ -67,25 +71,26 @@ export default function About() {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {t.pillars.map((pillar, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover hover:border-theme-border-glow backdrop-blur-xs transition-all shadow-xs group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-theme-bg/80 border border-theme-border-subtle flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                {pillarIcons[idx]}
-              </div>
-              <h3 className="text-base font-bold text-theme-text mb-2">
-                {pillar.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-theme-muted leading-relaxed">
-                {pillar.desc}
-              </p>
+      {/* Bloque inferior: Los 4 pilares en una sola fila horizontal */}
+      <div className="mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        {t.pillars.map((pillar, idx) => (
+          <div
+            key={idx}
+            className="p-6 rounded-2xl border border-theme-border/70 bg-theme-card hover:bg-theme-card-hover hover:border-theme-border-glow backdrop-blur-xs transition-all shadow-xs group flex flex-col justify-start h-full"
+          >
+            <div className="w-10 h-10 rounded-xl bg-theme-bg/80 border border-theme-border-subtle flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shrink-0">
+              {pillarIcons[idx]}
             </div>
-          ))}
-        </div>
+            <h3 className="text-base font-bold text-theme-text mb-2">
+              {pillar.title}
+            </h3>
+            <p className="text-xs sm:text-sm text-theme-muted leading-relaxed">
+              {pillar.desc}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
