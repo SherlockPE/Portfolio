@@ -32,19 +32,19 @@ export default function About() {
 
         <div className="lg:col-span-7 space-y-6">
           {/* Base Metodológica */}
-          <div className="p-6 rounded-2xl border border-theme-border bg-theme-card/90 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs text-theme-muted">
-            <div className="flex items-center justify-between text-theme-muted border-b border-theme-border-subtle pb-2">
-              <span className="font-bold text-theme-text uppercase tracking-wider">
+          <div className="p-6 rounded-2xl border border-theme-border bg-theme-card/90 backdrop-blur-xs shadow-xs space-y-4 font-mono text-sm text-theme-muted">
+            <div className="flex items-center justify-between text-theme-muted border-b border-theme-border-subtle pb-3">
+              <span className="font-bold text-theme-text uppercase tracking-wider text-xs sm:text-sm">
                 {t.methodologyTitle}
               </span>
-              <span className="text-theme-accent font-semibold px-2 py-0.5 rounded-full bg-theme-accent/10 border border-theme-accent/20">
+              <span className="text-theme-accent font-semibold text-xs px-2.5 py-1 rounded-full bg-theme-accent/10 border border-theme-accent/20">
                 {t.methodologyBadge}
               </span>
             </div>
-            <div className="space-y-2.5 text-theme-secondary">
+            <div className="space-y-3 text-theme-secondary leading-relaxed text-sm">
               {t.methodologyPoints.map((point: string, idx: number) => (
-                <p key={idx} className="flex items-start gap-2">
-                  <span className="text-theme-accent font-bold select-none shrink-0">•</span>
+                <p key={idx} className="flex items-start gap-2.5">
+                  <span className="text-theme-accent font-bold select-none shrink-0 mt-0.5">•</span>
                   <span>{point}</span>
                 </p>
               ))}
@@ -52,18 +52,18 @@ export default function About() {
           </div>
 
           {/* Áreas de Interés & Exploración Técnica */}
-          <div className="p-5 sm:p-6 rounded-2xl border border-theme-border/80 bg-theme-card/80 backdrop-blur-xs shadow-xs space-y-3 font-mono text-xs">
-            <div className="flex items-center gap-2 text-theme-muted border-b border-theme-border-subtle pb-2">
-              <FiCompass className="w-4 h-4 text-theme-accent" />
-              <span className="font-bold text-theme-text uppercase tracking-wider text-[11px]">
+          <div className="p-6 rounded-2xl border border-theme-border/80 bg-theme-card/80 backdrop-blur-xs shadow-xs space-y-4 font-mono text-sm">
+            <div className="flex items-center gap-2 text-theme-muted border-b border-theme-border-subtle pb-3">
+              <FiCompass className="w-4 h-4 text-theme-accent shrink-0" />
+              <span className="font-bold text-theme-text uppercase tracking-wider text-xs sm:text-sm">
                 {t.interestsTitle}
               </span>
             </div>
-            <div className="flex flex-wrap gap-2 pt-1">
+            <div className="flex flex-wrap gap-2.5 pt-1">
               {t.interests.map((interest: string, idx: number) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-1 rounded-lg bg-theme-bg border border-theme-border-subtle text-[11px] text-theme-secondary font-mono hover:border-theme-accent/40 transition-colors"
+                  className="px-3 py-1.5 rounded-lg bg-theme-bg border border-theme-border-subtle text-xs sm:text-sm text-theme-secondary font-mono hover:border-theme-accent/40 transition-colors"
                 >
                   {interest}
                 </span>
@@ -74,7 +74,7 @@ export default function About() {
       </div>
 
       {/* Bloque inferior: Los 4 pilares en una sola fila horizontal */}
-      <div className="mt-12 lg:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      <div className="mt-16 lg:mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
         {t.pillars.map((pillar, idx) => (
           <div
             key={idx}
