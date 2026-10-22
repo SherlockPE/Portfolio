@@ -4,6 +4,7 @@ import Home from "./sections/Home";
 import Footer from "./components/Footer";
 import BackgroundDecorations from "./components/background/BackgroundDecorations";
 import { useScrollReveal } from "./hooks/useScrollReveal";
+import { Analytics } from '@vercel/analytics/react';
 
 const About = lazy(() => import("./sections/About"));
 const Education = lazy(() => import("./sections/Education"));
@@ -15,6 +16,7 @@ export default function App() {
   useScrollReveal();
 
   return (
+
     <div className="min-h-screen antialiased bg-theme-bg text-theme-text selection:bg-theme-accent selection:text-white transition-colors duration-300 relative overflow-x-hidden">
       <BackgroundDecorations />
 
@@ -52,6 +54,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      <Analytics />
     </div>
   );
 }
